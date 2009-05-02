@@ -21,6 +21,7 @@
  * * 1.5 thanks to Dirk Jesse, Ansgar Hein, David Maciejewski and Mike West for their input for this release
  * * * new option syncheights that syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
  * * * fixed the hardcoded current class
+ * * * new option tabsListClass to be applied to the generated list of tabs above the content so lists inside the tabscontent can be styled differently
  */
 
 (function($) {
@@ -40,6 +41,7 @@
                 currentInfoText: 'current tab: ', // text to indicate for screenreaders which tab is the current one
                 currentInfoPosition: 'prepend', // Definition where to insert the Info Text. Can be either "prepend" or "append"
                 currentInfoClass: 'current-info', // Class to apply to the span wrapping the CurrentInfoText
+                tabsListClass:'tabs-list', // Class to apply to the generated list of tabs above the content
                 syncheights:false // syncs the heights of the tabs when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
             };
             var options = $.extend(defaults, config);
@@ -61,7 +63,7 @@
                     $(this).remove();
                 });
 
-                $(el).prepend('<ul>'+list+'</ul>');
+                $(el).prepend('<ul class="'+options.tabsListClass+'">'+list+'</ul>');
                 $(el).find(options.tabbody).hide();
                 $(el).find(options.tabbody+':first').show().before('<'+options.tabhead+'><a tabindex="0" class="accessibletabsanchor" name="'+contentAnchor+'" id="'+contentAnchor+'">'+$(el).find("ul>li:first").text()+'</a></'+options.tabhead+'>');
                 $(el).find("ul>li:first").addClass(options.currentClass)
@@ -74,7 +76,7 @@
                     });
                 }
 
-                $(el).find('ul>li>a').each(function(i){
+                $(el).find('ul.'+options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
                         $(el).find('ul>li.'+options.currentClass).removeClass(options.currentClass)
