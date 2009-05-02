@@ -67,10 +67,12 @@
                 .find('a')[options.currentInfoPosition]('<span class="'+options.currentInfoClass+'">'+options.currentInfoText+'</span>');
 
                 if (options.syncheights) {
-                    $(el).find(options.tabbody).syncHeight();
-                    $(window).resize(function(){ 
+                    if($.fn.syncHeight){
                         $(el).find(options.tabbody).syncHeight();
-                    });
+                        $(window).resize(function(){ 
+                            $(el).find(options.tabbody).syncHeight();
+                        });
+                    }
                 }
 
                 $(el).find('ul>li>a').each(function(i){
