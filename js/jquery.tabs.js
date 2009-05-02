@@ -66,13 +66,11 @@
                 $(el).find("ul>li:first").addClass(options.currentClass)
                 .find('a')[options.currentInfoPosition]('<span class="'+options.currentInfoClass+'">'+options.currentInfoText+'</span>');
 
-                if (options.syncheights) {
-                    if($.fn.syncHeight){
+                if (options.syncheights && $.fn.syncHeight) {
+                    $(el).find(options.tabbody).syncHeight();
+                    $(window).resize(function(){ 
                         $(el).find(options.tabbody).syncHeight();
-                        $(window).resize(function(){ 
-                            $(el).find(options.tabbody).syncHeight();
-                        });
-                    }
+                    });
                 }
 
                 $(el).find('ul>li>a').each(function(i){
