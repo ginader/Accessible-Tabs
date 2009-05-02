@@ -20,6 +20,7 @@
  * * 1.1.1 changed the headline markup. thanks to Mike Davies for the hint.
  * * 1.5 thanks to Dirk Jesse, Ansgar Hein, David Maciejewski and Mike West for their input for this release
  * * * new option syncheights that syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
+ * * * fixed the hardcoded current class
  */
 
 (function($) {
@@ -76,7 +77,7 @@
                 $(el).find('ul>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
-                        $(el).find('ul>li.current').removeClass(options.currentClass)
+                        $(el).find('ul>li.'+options.currentClass).removeClass(options.currentClass)
                         .find("span."+options.currentInfoClass).remove();
                         $(this).blur();
                         $(el).find(options.tabbody+':visible').hide();
