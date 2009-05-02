@@ -22,6 +22,7 @@
  * * * new option syncheights that syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
  * * * fixed the hardcoded current class
  * * * new option tabsListClass to be applied to the generated list of tabs above the content so lists inside the tabscontent can be styled differently
+ * * * added clearfix and tabcounter that adds a class in the schema "tabamount{number amount of tabs}" to the ul containg the tabs so one can style the tabs to fit 100% into the width
  */
 
 (function($) {
@@ -49,6 +50,7 @@
             return this.each(function() {
                 var el = $(this);
                 var list = '';
+                var tabCount = 0;
 
                 var contentAnchor = o.getUniqueId('accessibletabscontent');
                 var tabsAnchor = o.getUniqueId('accessibletabs');
@@ -61,9 +63,10 @@
                     }
                     list += '<li><a'+id+' href="#'+contentAnchor+'">'+$(this).text()+'</a></li>';
                     $(this).remove();
+                    tabCount++;
                 });
 
-                $(el).prepend('<ul class="'+options.tabsListClass+'">'+list+'</ul>');
+                $(el).prepend('<ul class="clearfix '+options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
                 $(el).find(options.tabbody).hide();
                 $(el).find(options.tabbody+':first').show().before('<'+options.tabhead+'><a tabindex="0" class="accessibletabsanchor" name="'+contentAnchor+'" id="'+contentAnchor+'">'+$(el).find("ul>li:first").text()+'</a></'+options.tabhead+'>');
                 $(el).find("ul>li:first").addClass(options.currentClass)
