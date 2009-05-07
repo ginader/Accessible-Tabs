@@ -29,9 +29,7 @@
  * *   inside the tabscontent can be styled differently
  * * * added clearfix and tabcounter that adds a class in the schema "tabamount{number amount of tabs}" 
  * *   to the ul containg the tabs so one can style the tabs to fit 100% into the width
- * * * added new option syncHeightMethodName. This new optional option can be set to the method name of an  
- * *   alternative plugin as string, that can be used to sync up the heights of the tab contents instead of 
- * *   the default syncHeight plugin. Fixes issue: http://github.com/ginader/Accessible-Tabs/issues#issue/2
+ * * * new option "syncHeightMethodName" fixed issue: http://github.com/ginader/Accessible-Tabs/issues/2/find
  */
 
 
