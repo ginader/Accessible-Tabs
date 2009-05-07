@@ -1,16 +1,19 @@
 /**
- * YAML Tabs - jQuery plugin for accessible, unobtrusive tabs
+ * Accessible Tabs - jQuery plugin for accessible, unobtrusive tabs
  * Build to seemlessly work with the CCS-Framework YAML (yaml.de) not depending on YAML though
  * @requires jQuery v1.0.3
  *
- * http://blog.ginader.de/dev/yamltabs/index.php
+ * english article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php
+ * german article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-Wie-man-Tabs-WIRKLICH-zugaenglich-macht.php
+ * 
+ * code: http://github.com/ginader/Accessible-Tabs
  *
  * Copyright (c) 2007 Dirk Ginader (ginader.de)
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.1.1
+ * Version: 1.5
  * 
  * History:
  * * 1.0 initial release
@@ -19,11 +22,18 @@
  * * * added check for existing ids on the content containers to use to proper anchors in the tabs
  * * 1.1.1 changed the headline markup. thanks to Mike Davies for the hint.
  * * 1.5 thanks to Dirk Jesse, Ansgar Hein, David Maciejewski and Mike West for their input for this release
- * * * new option syncheights that syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
+ * * * new option syncheights that syncs the heights of the tab contents when the SyncHeight plugin 
+ * *   is available http://blog.ginader.de/dev/jquery/syncheight/index.php
  * * * fixed the hardcoded current class
- * * * new option tabsListClass to be applied to the generated list of tabs above the content so lists inside the tabscontent can be styled differently
- * * * added clearfix and tabcounter that adds a class in the schema "tabamount{number amount of tabs}" to the ul containg the tabs so one can style the tabs to fit 100% into the width
+ * * * new option tabsListClass to be applied to the generated list of tabs above the content so lists 
+ * *   inside the tabscontent can be styled differently
+ * * * added clearfix and tabcounter that adds a class in the schema "tabamount{number amount of tabs}" 
+ * *   to the ul containg the tabs so one can style the tabs to fit 100% into the width
+ * * * added new option syncHeightMethodName. This new optional option can be set to the method name of an  
+ * *   alternative plugin as string, that can be used to sync up the heights of the tab contents instead of 
+ * *   the default syncHeight plugin. Fixes issue: http://github.com/ginader/Accessible-Tabs/issues#issue/2
  */
+
 
 (function($) {
     
@@ -43,7 +53,8 @@
                 currentInfoPosition: 'prepend', // Definition where to insert the Info Text. Can be either "prepend" or "append"
                 currentInfoClass: 'current-info', // Class to apply to the span wrapping the CurrentInfoText
                 tabsListClass:'tabs-list', // Class to apply to the generated list of tabs above the content
-                syncheights:false // syncs the heights of the tabs when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
+                syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
+                syncHeightMethodName:'syncHeight' // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
             };
             var options = $.extend(defaults, config);
             var o = this;
@@ -72,10 +83,10 @@
                 $(el).find("ul>li:first").addClass(options.currentClass)
                 .find('a')[options.currentInfoPosition]('<span class="'+options.currentInfoClass+'">'+options.currentInfoText+'</span>');
 
-                if (options.syncheights && $.fn.syncHeight) {
-                    $(el).find(options.tabbody).syncHeight();
+                if (options.syncheights && $.fn[options.syncHeightMethodName]) {
+                    $(el).find(options.tabbody)[options.syncHeightMethodName]();
                     $(window).resize(function(){ 
-                        $(el).find(options.tabbody).syncHeight();
+                        $(el).find(options.tabbody)[options.syncHeightMethodName]();
                     });
                 }
 
