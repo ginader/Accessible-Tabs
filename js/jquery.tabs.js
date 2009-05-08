@@ -21,7 +21,7 @@
  * * * rewrite to use "fn.extend" structure
  * * * added check for existing ids on the content containers to use to proper anchors in the tabs
  * * 1.1.1 changed the headline markup. thanks to Mike Davies for the hint.
- * * 1.5 thanks to Dirk Jesse, Ansgar Hein, David Maciejewski and Mike West for their input for this release
+ * * 1.5 thanks to Dirk Jesse, Ansgar Hein, David Maciejewski and Mike West for commiting patches to this release
  * * * new option syncheights that syncs the heights of the tab contents when the SyncHeight plugin 
  * *   is available http://blog.ginader.de/dev/jquery/syncheight/index.php
  * * * fixed the hardcoded current class
@@ -30,6 +30,7 @@
  * * * added clearfix and tabcounter that adds a class in the schema "tabamount{number amount of tabs}" 
  * *   to the ul containg the tabs so one can style the tabs to fit 100% into the width
  * * * new option "syncHeightMethodName" fixed issue: http://github.com/ginader/Accessible-Tabs/issues/2/find
+ * * * new Method showAccessibleTab({index number of the tab to show starting with 0})
  */
 
 
