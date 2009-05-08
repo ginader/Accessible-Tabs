@@ -55,7 +55,7 @@
                 syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
                 syncHeightMethodName:'syncHeight' // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
             };
-            var options = $.extend(defaults, config);
+            this.options = $.extend(defaults, config);
             var o = this;
             return this.each(function() {
                 var el = $(this);
@@ -64,9 +64,9 @@
 
                 var contentAnchor = o.getUniqueId('accessibletabscontent');
                 var tabsAnchor = o.getUniqueId('accessibletabs');
-                $(el).wrapInner('<div class="'+options.wrapperClass+'"></div>');
+                $(el).wrapInner('<div class="'+o.options.wrapperClass+'"></div>');
 
-                $(el).find(options.tabhead).each(function(i){
+                $(el).find(o.options.tabhead).each(function(i){
                     var id = '';
                     if(i === 0){
                         id =' id="'+tabsAnchor+'"';
@@ -76,33 +76,40 @@
                     tabCount++;
                 });
 
-                $(el).prepend('<ul class="clearfix '+options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
-                $(el).find(options.tabbody).hide();
-                $(el).find(options.tabbody+':first').show().before('<'+options.tabhead+'><a tabindex="0" class="accessibletabsanchor" name="'+contentAnchor+'" id="'+contentAnchor+'">'+$(el).find("ul>li:first").text()+'</a></'+options.tabhead+'>');
-                $(el).find("ul>li:first").addClass(options.currentClass)
-                .find('a')[options.currentInfoPosition]('<span class="'+options.currentInfoClass+'">'+options.currentInfoText+'</span>');
+                $(el).prepend('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
+                $(el).find(o.options.tabbody).hide();
+                $(el).find(o.options.tabbody+':first').show().before('<'+o.options.tabhead+'><a tabindex="0" class="accessibletabsanchor" name="'+contentAnchor+'" id="'+contentAnchor+'">'+$(el).find("ul>li:first").text()+'</a></'+o.options.tabhead+'>');
+                $(el).find("ul>li:first").addClass(o.options.currentClass)
+                .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>');
 
-                if (options.syncheights && $.fn[options.syncHeightMethodName]) {
-                    $(el).find(options.tabbody)[options.syncHeightMethodName]();
+                if (o.options.syncheights && $.fn[o.options.syncHeightMethodName]) {
+                    $(el).find(o.options.tabbody)[o.options.syncHeightMethodName]();
                     $(window).resize(function(){ 
-                        $(el).find(options.tabbody)[options.syncHeightMethodName]();
+                        $(el).find(o.options.tabbody)[o.options.syncHeightMethodName]();
                     });
                 }
 
-                $(el).find('ul.'+options.tabsListClass+'>li>a').each(function(i){
+                $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
-                        $(el).find('ul>li.'+options.currentClass).removeClass(options.currentClass)
-                        .find("span."+options.currentInfoClass).remove();
+                        $(el).find('ul>li.'+o.options.currentClass).removeClass(o.options.currentClass)
+                        .find("span."+o.options.currentInfoClass).remove();
                         $(this).blur();
-                        $(el).find(options.tabbody+':visible').hide();
-                        $(el).find(options.tabbody).eq(i)[options.fx](options.fxspeed);
+                        $(el).find(o.options.tabbody+':visible').hide();
+                        $(el).find(o.options.tabbody).eq(i)[o.options.fx](o.options.fxspeed);
                         $( '#'+contentAnchor ).text( $(this).text() ).focus();
-                        $(this)[options.currentInfoPosition]('<span class="'+options.currentInfoClass+'">'+options.currentInfoText+'</span>')
-                        .parent().addClass(options.currentClass);
+                        $(this)[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
+                        .parent().addClass(o.options.currentClass);
                         
                     });
                 });
+            });
+        },
+        showAccessibleTab: function(index){
+            var o = this;
+            return this.each(function() {
+                var el = $(this);
+                el.find('ul.'+o.options.tabsListClass+'>li>a').eq(index).click();
             });
         }
     });
