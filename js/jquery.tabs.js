@@ -7,6 +7,7 @@
  * german article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-Wie-man-Tabs-WIRKLICH-zugaenglich-macht.php
  * 
  * code: http://github.com/ginader/Accessible-Tabs
+ * please report issues at: http://github.com/ginader/Accessible-Tabs/issues
  *
  * Copyright (c) 2007 Dirk Ginader (ginader.de)
  * Dual licensed under the MIT and GPL licenses:
@@ -30,7 +31,7 @@
  * * * added clearfix and tabcounter that adds a class in the schema "tabamount{number amount of tabs}" 
  * *   to the ul containg the tabs so one can style the tabs to fit 100% into the width
  * * * new option "syncHeightMethodName" fixed issue: http://github.com/ginader/Accessible-Tabs/issues/2/find
- * * * new Method showAccessibleTab({index number of the tab to show starting with 0})
+ * * * new Method showAccessibleTab({index number of the tab to show starting with 0})  fixed issue: http://github.com/ginader/Accessible-Tabs/issues/3/find
  */
 
 
