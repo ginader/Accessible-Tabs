@@ -32,6 +32,7 @@
  * *   to the ul containg the tabs so one can style the tabs to fit 100% into the width
  * * * new option "syncHeightMethodName" fixed issue: http://github.com/ginader/Accessible-Tabs/issues/2/find
  * * * new Method showAccessibleTab({index number of the tab to show starting with 0})  fixed issue: http://github.com/ginader/Accessible-Tabs/issues/3/find
+ * * * added support for the Cursor Keys to come closer to the WAI ARIA Tab Panel Best Practices http://github.com/ginader/Accessible-Tabs/issues/1/find
  */
 
 
@@ -55,6 +56,34 @@
                 tabsListClass:'tabs-list', // Class to apply to the generated list of tabs above the content
                 syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
                 syncHeightMethodName:'syncHeight' // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
+            };
+            // cursor key codes
+            /*
+            backspace  	8
+            tab 	9
+            enter 	13
+            shift 	16
+            ctrl 	17
+            alt 	18
+            pause/break 	19
+            caps lock 	20
+            escape 	27
+            page up 	33
+            page down 	34
+            end 	35
+            home 	36
+            left arrow 	37
+            up arrow 	38
+            right arrow 	39
+            down arrow 	40
+            insert 	45
+            delete 	46
+            */
+            var keyCodes = {
+                37 : -1, //LEFT
+                38 : -1, //UP
+                39 : +1, //RIGHT 
+                40 : +1 //DOWN
             };
             this.options = $.extend(defaults, config);
             var o = this;
@@ -98,19 +127,51 @@
                         $(this).blur();
                         $(el).find(o.options.tabbody+':visible').hide();
                         $(el).find(o.options.tabbody).eq(i)[o.options.fx](o.options.fxspeed);
-                        $( '#'+contentAnchor ).text( $(this).text() ).focus();
+                        $( '#'+contentAnchor ).text( $(this).text() ).focus().keyup(function(event){
+                            if(keyCodes[event.keyCode]){
+                                o.showAccessibleTab(i+keyCodes[event.keyCode]);
+                                console.log(i);
+                                $(this).unbind( "keyup" );
+                            }
+                        });
                         $(this)[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
                         .parent().addClass(o.options.currentClass);
+
+
+                        // $(el).find('.accessibletabsanchor').keyup(function(event){
+                        //     if(keyCodes[event.keyCode]){
+                        //         o.showAccessibleTab(i+keyCodes[event.keyCode]);
+                        //     }
+                        // });
+                        
                         
                     });
+
+                    $(this).focus(function(event){
+                        console.log($(this));
+                        $(document).keyup(function(event){
+                            if(keyCodes[event.keyCode]){
+                                o.showAccessibleTab(i+keyCodes[event.keyCode]);
+                            }
+                        });
+                    });
+                    $(this).blur(function(event){
+                        $(document).unbind( "keyup" );
+                    });
+                    
+
                 });
             });
         },
         showAccessibleTab: function(index){
+            console.log('showAccessibleTab');
+            console.log(index);
             var o = this;
             return this.each(function() {
                 var el = $(this);
-                el.find('ul.'+o.options.tabsListClass+'>li>a').eq(index).click();
+                var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
+                console.log(links);
+                links.eq(index).click();
             });
         }
     });
