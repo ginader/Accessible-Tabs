@@ -37,7 +37,7 @@
 
 
 (function($) {
-    
+    var debugMode = false;
     $.fn.extend({
         getUniqueId: function(p){
             return p + new Date().getTime();
@@ -130,7 +130,7 @@
                         $( '#'+contentAnchor ).text( $(this).text() ).focus().keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
-                                console.log(i);
+                                debug(i);
                                 $(this).unbind( "keyup" );
                             }
                         });
@@ -148,7 +148,7 @@
                     });
 
                     $(this).focus(function(event){
-                        console.log($(this));
+                        debug($(this));
                         $(document).keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
@@ -164,15 +164,21 @@
             });
         },
         showAccessibleTab: function(index){
-            console.log('showAccessibleTab');
-            console.log(index);
+            debug('showAccessibleTab');
+            debug(index);
             var o = this;
             return this.each(function() {
                 var el = $(this);
                 var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
-                console.log(links);
+                debug(links);
                 links.eq(index).click();
             });
         }
     });
+    // private Methods
+    function debug(msg){
+        if(debugMode && window.console && window.console.log){
+            window.console.log(msg);
+        }
+    }
 })(jQuery);
