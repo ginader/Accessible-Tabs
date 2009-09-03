@@ -5,30 +5,37 @@
  *
  * http://blog.ginader.de/dev/syncheight/
  *
- * Copyright (c) 2007 
+ * Copyright (c) 2007-2009 
  * Dirk Ginader (ginader.de)
  * Dirk Jesse (yaml.de)
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.0
+ * Version: 1.1
  *
  * Usage:
  	$(document).ready(function(){
 		$('p').syncHeight();
-		$(window).resize(function(){ //if you want to update the columns after a Browser resize (optional)
-			$('p').syncHeight();
-		});
 	});
  */
 
 (function($) {
-	$.fn.syncHeight = function(settings) {
+	$.fn.syncHeight = function(config) {
+		var defaults = {
+			updateOnResize: false	// re-sync element heights after a browser resize event (useful in flexible layouts)
+		};
+		var options = $.extend(defaults, config);
+		
+		var e = this;
+		
 		var max = 0;
 		var browser_id = 0;
 		var property = [
-		   ['min-height','0px'],
+			// To avoid content overflow in synchronised boxes on font scaling, we 
+			// use 'min-height' property for modern browsers ...
+			['min-height','0px'],
+			// and 'height' property for Internet Explorer.
 			['height','1%']
 		];
 
@@ -51,6 +58,13 @@
  		$(this).each(function() {
   			$(this).css(property[browser_id][0],max+'px');
 		});
+		
+		// optional sync refresh on resize event ...
+		if (options.updateOnResize == true) {
+			$(window).resize(function(){ 
+				$(e).syncHeight();
+			});
+		}
 		return this;
 	};	
 })(jQuery);
