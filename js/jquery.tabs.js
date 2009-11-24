@@ -101,7 +101,7 @@
                     if(i === 0){
                         id =' id="'+tabsAnchor+'"';
                     }
-                    list += '<li><a'+id+' href="#'+contentAnchor+'">'+$(this).text()+'</a></li>';
+                    list += '<li><a'+id+' href="#'+contentAnchor+'">'+$(this).html()+'</a></li>';
                     $(this).remove();
                     tabCount++;
                 });
