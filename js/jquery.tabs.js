@@ -55,7 +55,8 @@
                 currentInfoClass: 'current-info', // Class to apply to the span wrapping the CurrentInfoText
                 tabsListClass:'tabs-list', // Class to apply to the generated list of tabs above the content
                 syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
-                syncHeightMethodName:'syncHeight' // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
+                syncHeightMethodName:'syncHeight', // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
+                cssClassAvailable:false // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
             };
             // cursor key codes
             /*
@@ -101,7 +102,16 @@
                     if(i === 0){
                         id =' id="'+tabsAnchor+'"';
                     }
-                    list += '<li><a'+id+' href="#'+contentAnchor+'">'+$(this).html()+'</a></li>';
+                    if(o.options.cssClassAvailable === true) {
+                        var cssClass = '';
+                        if($(el).attr('class')) {
+                            cssClass = $(this).attr('class');
+                            cssClass = ' class="'+cssClass+'"';
+                            list += '<li><a'+id+''+cssClass+' href="#'+contentAnchor+'">'+$(this).html()+'</a></li>';
+                        }
+                    } else {
+                        list += '<li><a'+id+' href="#'+contentAnchor+'">'+$(this).html()+'</a></li>';
+                    }
                     $(this).remove();
                     tabCount++;
                 });
