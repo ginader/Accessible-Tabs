@@ -60,28 +60,6 @@
                 cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
                 savestate:false // save the selected tab into a cookie so it stays selected after a reload
             };
-            // cursor key codes
-            /*
-            backspace  	8
-            tab 	9
-            enter 	13
-            shift 	16
-            ctrl 	17
-            alt 	18
-            pause/break 	19
-            caps lock 	20
-            escape 	27
-            page up 	33
-            page down 	34
-            end 	35
-            home 	36
-            left arrow 	37
-            up arrow 	38
-            right arrow 	39
-            down arrow 	40
-            insert 	45
-            delete 	46
-            */
             var keyCodes = {
                 37 : -1, //LEFT
                 38 : -1, //UP
