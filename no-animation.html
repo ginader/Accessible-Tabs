@@ -25,18 +25,18 @@
         font-size:93%;
         line-height:normal;
         }
-      .tabs ul.tabs-list {
+      .tabs ul {
         margin:0;
         padding:10px 10px 0;
         list-style:none;
         }
-      .tabs ul.tabs-list li {
+      .tabs ul li {
         float:left;
         background:url("slidingdoors/left.gif") no-repeat left top;
         margin:0;
         padding:0 0 0 9px;
         }
-      .tabs ul.tabs-list a {
+      .tabs ul a {
         float:left;
         display:block;
         background:url("slidingdoors/right.gif") no-repeat right top;
@@ -52,11 +52,11 @@
       .tabs a:hover {
         color:#333;
         }
-      .tabs ul.tabs-list .current {
+      .tabs ul .current {
         background-image:url("slidingdoors/left_on.gif");
         border-width:0;
         }
-      .tabs ul.tabs-list .current a {
+      .tabs ul .current a {
         background-image:url("slidingdoors/right_on.gif");
         color:#333;
         padding-bottom:5px;
@@ -92,20 +92,14 @@
     <script type="text/javascript">document.documentElement.className += " js";</script>
     <script src="js/jquery-1.3.1.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/jquery.tabs.js" type="text/javascript" charset="utf-8"></script>
-    <script src="js/jquery.syncheight.js" type="text/javascript" charset="utf-8"></script>
-    
     <script type="text/javascript">
 
     $(document).ready(function(){
-        var tabs = $(".tabs").accessibleTabs({
-            tabhead:'h2',
-            fx:"fadeIn",
-            syncheights:true,
-            savestate:true
-        });
-        $("a[href=#dummy-text]").click(function(){
-            tabs.showAccessibleTab(1);
-        });
+    	$(".tabs").accessibleTabs({
+    	    tabhead:'h2',
+    	    fx:"show",
+    	    fxspeed:null
+    	});
     });
 
     </script>    
@@ -117,45 +111,20 @@
         <div class="tabbody">
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
             <h3>Lorem ipsum</h3>
-            <ul>
-                <li>bla</li>
-                <li><a href="#dummy-text">bla bla</a></li>
-            </ul>
             <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
         </div>
-        <h2 id="dummy-text">some more dummy text</h2>
+        <h2>some more dummy text</h2>
         <div class="tabbody">
             <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. </p>
             <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque</p>
         </div>
-        <h2 id="anything-else">anything else</h2>
-        <div class="tabbody">
-            <p>Here could be your content</p>
-        </div>
-    </div>
-    <div class="tabs">
-        <h2>some dummy text</h2>
-        <div class="tabbody">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
-            <h3>Lorem ipsum</h3>
-            <ul>
-                <li>bla</li>
-                <li><a href="#dummy-text">bla bla</a></li>
-            </ul>
-            <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
-        </div>
-        <h2 id="dummy-text">some more dummy text</h2>
-        <div class="tabbody">
-            <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. </p>
-            <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque</p>
-        </div>
-        <h2 id="anything-else">anything else</h2>
+        <h2>anything else</h2>
         <div class="tabbody">
             <p>Here could be your content</p>
         </div>
     </div>
     <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
@@ -163,6 +132,6 @@
     var pageTracker = _gat._getTracker("UA-299719-2");
     pageTracker._initData();
     pageTracker._trackPageview();
-    </script> -->
+    </script>
 </body>
 </html>

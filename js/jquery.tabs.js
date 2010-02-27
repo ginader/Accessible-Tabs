@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.5
+ * Version: 1.6
  * 
  * History:
  * * 1.0 initial release
@@ -33,6 +33,7 @@
  * * * new option "syncHeightMethodName" fixed issue: http://github.com/ginader/Accessible-Tabs/issues/2/find
  * * * new Method showAccessibleTab({index number of the tab to show starting with 0})  fixed issue: http://github.com/ginader/Accessible-Tabs/issues/3/find
  * * * added support for the Cursor Keys to come closer to the WAI ARIA Tab Panel Best Practices http://github.com/ginader/Accessible-Tabs/issues/1/find
+ * * 1.6 new option "savestate" to allow tabs remember their selecetd state using cookies
  */
 
 
@@ -56,7 +57,8 @@
                 tabsListClass:'tabs-list', // Class to apply to the generated list of tabs above the content
                 syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
                 syncHeightMethodName:'syncHeight', // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
-                cssClassAvailable:false // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
+                cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
+                savestate:false // save the selected tab into a cookie so it stays selected after a reload
             };
             // cursor key codes
             /*
