@@ -1,7 +1,7 @@
 /**
  * Accessible Tabs - jQuery plugin for accessible, unobtrusive tabs
  * Build to seemlessly work with the CCS-Framework YAML (yaml.de) not depending on YAML though
- * @requires jQuery v1.0.3
+ * @requires jQuery - tested with 1.4.2 but might as well work with older versions
  *
  * english article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php
  * german article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-Wie-man-Tabs-WIRKLICH-zugaenglich-macht.php
@@ -33,7 +33,9 @@
  * * * new option "syncHeightMethodName" fixed issue: http://github.com/ginader/Accessible-Tabs/issues/2/find
  * * * new Method showAccessibleTab({index number of the tab to show starting with 0})  fixed issue: http://github.com/ginader/Accessible-Tabs/issues/3/find
  * * * added support for the Cursor Keys to come closer to the WAI ARIA Tab Panel Best Practices http://github.com/ginader/Accessible-Tabs/issues/1/find
- * * 1.6 new option "savestate" to allow tabs remember their selecetd state using cookies
+ * * 1.6 
+ * * * new option "savestate" to allow tabs remember their selecetd state using cookies
+ * * * changed supported jquery version to 1.4.2 to make sure it's future compatible 
  */
 
 
