@@ -34,8 +34,8 @@
  * * * new Method showAccessibleTab({index number of the tab to show starting with 0})  fixed issue: http://github.com/ginader/Accessible-Tabs/issues/3/find
  * * * added support for the Cursor Keys to come closer to the WAI ARIA Tab Panel Best Practices http://github.com/ginader/Accessible-Tabs/issues/1/find
  * * 1.6 
- * * * new option "savestate" to allow tabs remember their selecetd state using cookies
- * * * changed supported jquery version to 1.4.2 to make sure it's future compatible 
+ * * * new option "savestate" to allow tabs remember their selected state using cookies requires the cookie plugin: http://plugins.jquery.com/project/Cookie
+ * * * changed supported jquery version to 1.4.2 to make sure it's future compatible
  */
 
 
@@ -60,7 +60,7 @@
                 syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
                 syncHeightMethodName:'syncHeight', // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
                 cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
-                savestate:false // save the selected tab into a cookie so it stays selected after a reload
+                savestate:false // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
             };
             var keyCodes = {
                 37 : -1, //LEFT
@@ -114,6 +114,9 @@
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
+                        if(o.options.savestate && $.cookie){
+                            $.cookie('accessibletab_'+el.attr('id')+'_active',i);
+                        }
                         $(el).find('ul>li.'+o.options.currentClass).removeClass(o.options.currentClass)
                         .find("span."+o.options.currentInfoClass).remove();
                         $(this).blur();
@@ -122,7 +125,6 @@
                         $( '#'+contentAnchor ).text( $(this).text() ).focus().keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
-                                debug(i);
                                 $(this).unbind( "keyup" );
                             }
                         });
@@ -140,7 +142,6 @@
                     });
 
                     $(this).focus(function(event){
-                        debug($(this));
                         $(document).keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
@@ -150,27 +151,43 @@
                     $(this).blur(function(event){
                         $(document).unbind( "keyup" );
                     });
+                
                     
-
                 });
+
+                if(o.options.savestate && $.cookie){
+                    var savedState = $.cookie('accessibletab_'+el.attr('id')+'_active');
+                    debug($.cookie('accessibletab_'+el.attr('id')+'_active'));
+                    if(savedState != null){
+                        o.showAccessibleTab(savedState,el.attr('id'));
+                    }
+                }
             });
         },
-        showAccessibleTab: function(index){
+        showAccessibleTab: function(index,id){
             debug('showAccessibleTab');
-            debug(index);
             var o = this;
-            return this.each(function() {
-                var el = $(this);
+            if(id){
+                var el = $('#'+id);
                 var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
-                debug(links);
                 links.eq(index).click();
-            });
+            }else{
+                return this.each(function() {
+                    var el = $(this);
+                    var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
+                    links.eq(index).click();
+                });
+            }
         }
     });
     // private Methods
-    function debug(msg){
+    function debug(msg,info){
         if(debugMode && window.console && window.console.log){
-            window.console.log(msg);
+            if(info){
+                window.console.log(info+': ',msg);
+            }else{
+                window.console.log(msg);
+            }
         }
     }
 })(jQuery);
