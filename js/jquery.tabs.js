@@ -36,12 +36,13 @@
  * * 1.6 
  * * * new option "saveState" to allow tabs remember their selected state using cookies requires the cookie plugin: http://plugins.jquery.com/project/Cookie
  * * * changed supported jquery version to 1.4.2 to make sure it's future compatible
+ * * * new option "autoAnchor" which allows to add ID's to headlines in the tabs markup that allow direct linking into a tab i.e.: file.html#headlineID
  
  */
 
 
 (function($) {
-    var debugMode = false;
+    var debugMode = true;
     $.fn.extend({
         getUniqueId: function(p){
             return p + new Date().getTime();
@@ -61,7 +62,8 @@
                 syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
                 syncHeightMethodName:'syncHeight', // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
                 cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
-                saveState:false // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
+                saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
+                autoAnchor:false // will move over any existing id of a headline in tabs markup so it can be linked to it
             };
             var keyCodes = {
                 37 : -1, //LEFT
@@ -82,8 +84,9 @@
 
                 $(el).find(o.options.tabhead).each(function(i){
                     var id = '';
-                    if(i === 0){
-                        id =' id="'+tabsAnchor+'"';
+                    elId = $(this).attr('id');
+                    if(elId){
+                        id =' id="'+elId+'"';
                     }
                     if(o.options.cssClassAvailable === true) {
                         var cssClass = '';
@@ -161,6 +164,13 @@
                     debug($.cookie('accessibletab_'+el.attr('id')+'_active'));
                     if(savedState != null){
                         o.showAccessibleTab(savedState,el.attr('id'));
+                    }
+                };
+                
+                if(o.options.autoAnchor && window.location.hash){
+                    var anchorTab = $('.'+o.options.tabsListClass).find(window.location.hash);
+                    if(anchorTab.size()){
+                        anchorTab.click();
                     }
                 }
             });
