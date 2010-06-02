@@ -44,14 +44,18 @@
 (function($) {
     var debugMode = false;
     $.fn.extend({
-        getUniqueId: function(p){
-            return p + new Date().getTime();
+        // We assume there could be multiple sets of tabs on a page, so,
+        // the unique id for each invididual tab's heading is identified with params q and r (e.g., id="accessibletabscontent0-2")
+        getUniqueId: function(p, q, r){
+            if (r===undefined) {r='';} else {r='-'+r;}
+            return p + q + r;
         },
         accessibleTabs: function(config) {
             var defaults = {
                 wrapperClass: 'content', // Classname to apply to the div that is wrapped around the original Markup
                 currentClass: 'current', // Classname to apply to the LI of the selected Tab
                 tabhead: 'h4', // Tag or valid Query Selector of the Elements to Transform the Tabs-Navigation from (originals are removed)
+                tabheadClass: 'tabhead', // Classname to apply to the target heading element for each tab div
                 tabbody: '.tabbody', // Tag or valid Query Selector of the Elements to be treated as the Tab Body
                 fx:'show', // can be "fadeIn", "slideDown", "show"
                 fxspeed: 'normal', // speed (String|Number): "slow", "normal", or "fast") or the number of milliseconds to run the animation
@@ -73,13 +77,11 @@
             };
             this.options = $.extend(defaults, config);
             var o = this;
-            return this.each(function() {
+            return this.each(function(t) {
                 var el = $(this);
                 var list = '';
                 var tabCount = 0;
 
-                var contentAnchor = o.getUniqueId('accessibletabscontent');
-                var tabsAnchor = o.getUniqueId('accessibletabs');
                 $(el).wrapInner('<div class="'+o.options.wrapperClass+'"></div>');
 
                 $(el).find(o.options.tabhead).each(function(i){
@@ -88,23 +90,24 @@
                     if(elId){
                         id =' id="'+elId+'"';
                     }
+                    var tabId = o.getUniqueId('accessibletabscontent', t, i);//get a unique id to assign to this tab's heading
+                    $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     if(o.options.cssClassAvailable === true) {
                         var cssClass = '';
                         if($(el).attr('class')) {
                             cssClass = $(this).attr('class');
                             cssClass = ' class="'+cssClass+'"';
-                            list += '<li><a'+id+''+cssClass+' href="#'+contentAnchor+'">'+$(this).html()+'</a></li>';
+                            list += '<li><a'+id+''+cssClass+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                         }
                     } else {
-                        list += '<li><a'+id+' href="#'+contentAnchor+'">'+$(this).html()+'</a></li>';
+                        list += '<li><a'+id+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                     }
-                    $(this).remove();
                     tabCount++;
                 });
 
                 $(el).prepend('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
                 $(el).find(o.options.tabbody).hide();
-                $(el).find(o.options.tabbody+':first').show().before('<'+o.options.tabhead+'><a tabindex="0" class="accessibletabsanchor" name="'+contentAnchor+'" id="'+contentAnchor+'">'+$(el).find("ul>li:first").text()+'</a></'+o.options.tabhead+'>');
+                $(el).find(o.options.tabbody+':first').show();
                 $(el).find("ul>li:first").addClass(o.options.currentClass)
                 .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>');
 
@@ -118,7 +121,7 @@
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
-                        if(o.options.savestate && $.cookie){
+                        if(o.options.saveState && $.cookie){//fixed typo: "savestate"-->"saveState"
                             $.cookie('accessibletab_'+el.attr('id')+'_active',i);
                         }
                         $(el).find('ul>li.'+o.options.currentClass).removeClass(o.options.currentClass)
@@ -126,15 +129,15 @@
                         $(this).blur();
                         $(el).find(o.options.tabbody+':visible').hide();
                         $(el).find(o.options.tabbody).eq(i)[o.options.fx](o.options.fxspeed);
-                        $( '#'+contentAnchor ).text( $(this).text() ).focus().keyup(function(event){
+                        $(this)[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
+                        .parent().addClass(o.options.currentClass);
+                        //now, only after writing the currentInfoText span to the tab list link, set focus to the tab's heading
+                        $($(this).attr("href")).focus().keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
                                 $(this).unbind( "keyup" );
                             }
                         });
-                        $(this)[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
-                        .parent().addClass(o.options.currentClass);
-
 
                         // $(el).find('.accessibletabsanchor').keyup(function(event){
                         //     if(keyCodes[event.keyCode]){
@@ -159,7 +162,7 @@
                     
                 });
 
-                if(o.options.savestate && $.cookie){
+                if(o.options.saveState && $.cookie){//fixed typo: "savestate"-->"saveState"
                     var savedState = $.cookie('accessibletab_'+el.attr('id')+'_active');
                     debug($.cookie('accessibletab_'+el.attr('id')+'_active'));
                     if(savedState != null){
