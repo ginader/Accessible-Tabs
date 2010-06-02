@@ -61,7 +61,8 @@
 }
 }
 .js .jquery_tabs .current-info,
-.js .jquery_tabs .accessibletabsanchor{
+.js .jquery_tabs .accessibletabsanchor,
+.js .jquery_tabs .tabhead /*position each individual tab's heading (default class .tabhead) off-screen*/ {
     position:absolute;
     left:-999em;
 }
