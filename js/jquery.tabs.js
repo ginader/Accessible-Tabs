@@ -42,7 +42,7 @@
 
 
 (function($) {
-    var debugMode = true;
+    var debugMode = false;
     $.fn.extend({
         getUniqueId: function(p){
             return p + new Date().getTime();
