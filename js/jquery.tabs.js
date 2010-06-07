@@ -37,6 +37,12 @@
  * * * new option "saveState" to allow tabs remember their selected state using cookies requires the cookie plugin: http://plugins.jquery.com/project/Cookie
  * * * changed supported jquery version to 1.4.2 to make sure it's future compatible
  * * * new option "autoAnchor" which allows to add ID's to headlines in the tabs markup that allow direct linking into a tab i.e.: file.html#headlineID
+ * * 1.7
+ * * * new option "pagination" that adds links to show the next/previous tab. This adds the following markup to each tab for you to style:
+ <ul class="pagination">
+     <li class="previous"><a href="#{the-id-of-the-previous-tab}"><span>{the headline of the previous tab}</span></a></li>
+     <li class="next"><a href="#{the-id-of-the-next-tab}"><span>{the headline of the previous tab}</span></a></li>
+ </ul>
  
  */
 
@@ -67,7 +73,8 @@
                 syncHeightMethodName:'syncHeight', // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
                 cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
                 saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
-                autoAnchor:false // will move over any existing id of a headline in tabs markup so it can be linked to it
+                autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
+                pagination:false // adds buttons to each tab to swtich to the next/previous tab
             };
             var keyCodes = {
                 37 : -1, //LEFT
@@ -81,6 +88,7 @@
                 var el = $(this);
                 var list = '';
                 var tabCount = 0;
+                ids = [];
 
                 $(el).wrapInner('<div class="'+o.options.wrapperClass+'"></div>');
 
@@ -91,6 +99,7 @@
                         id =' id="'+elId+'"';
                     }
                     var tabId = o.getUniqueId('accessibletabscontent', t, i);//get a unique id to assign to this tab's heading
+                    ids.push(tabId);
                     $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     if(o.options.cssClassAvailable === true) {
                         var cssClass = '';
@@ -121,7 +130,7 @@
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
-                        if(o.options.saveState && $.cookie){//fixed typo: "savestate"-->"saveState"
+                        if(o.options.saveState && $.cookie){
                             $.cookie('accessibletab_'+el.attr('id')+'_active',i);
                         }
                         $(el).find('ul>li.'+o.options.currentClass).removeClass(o.options.currentClass)
@@ -162,7 +171,7 @@
                     
                 });
 
-                if(o.options.saveState && $.cookie){//fixed typo: "savestate"-->"saveState"
+                if(o.options.saveState && $.cookie){
                     var savedState = $.cookie('accessibletab_'+el.attr('id')+'_active');
                     debug($.cookie('accessibletab_'+el.attr('id')+'_active'));
                     if(savedState != null){
@@ -175,6 +184,37 @@
                     if(anchorTab.size()){
                         anchorTab.click();
                     }
+                };
+                
+                if(o.options.pagination){
+                    var m = '<ul class="pagination">';
+                    m +='    <li class="previous"><a href="#{previousAnchor}"><span>{previousHeadline}</span></a></li>';
+                    m +='    <li class="next"><a href="#{nextAnchor}"><span>{nextHeadline}</span></a></li>';
+                    m +='</ul>';
+                    var tabs = $(el).find('.tabbody');
+                    var tabcount = tabs.size();
+                    tabs.each(function(idx){
+                        $(this).append(m);
+                        var next = idx+1;
+                        if(next>=tabcount){next = 0;}
+                        var previous = idx-1;
+                        if(previous<0){previous = tabcount-1;}
+                        var p = $(this).find('.pagination');
+                        var previousEl = p.find('.previous');
+                        previousEl.find('span').text($('#'+ids[previous]).text());
+                        previousEl.find('a').attr('href','#'+ids[previous])
+                        .click(function(event){
+                            event.preventDefault();
+                            $(el).find('.tabs-list a[href|=#'+ids[previous]+']').click();
+                        });
+                        var nextEl = p.find('.next');
+                        nextEl.find('span').text($('#'+ids[next]).text());
+                        nextEl.find('a').attr('href','#'+ids[next])
+                        .click(function(event){
+                            event.preventDefault();
+                            $(el).find('.tabs-list a[href|=#'+ids[next]+']').click();
+                        });
+                    });
                 }
             });
         },
