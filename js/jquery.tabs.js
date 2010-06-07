@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.6
+ * Version: 1.7
  * 
  * History:
  * * 1.0 initial release
