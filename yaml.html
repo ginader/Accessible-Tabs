@@ -22,7 +22,10 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	$(".jquery_tabs").accessibleTabs({fx:"slideDown",tabbody:'.text'});
+	$(".jquery_tabs").accessibleTabs({
+	    fx:"slideDown",
+	    tabbody:'.text'
+	});
 });
 
 </script>
@@ -110,6 +113,15 @@ $(document).ready(function(){
 
 				</div>
 				<div id="ie_clearing">&nbsp;</div>
+				<h2>Usage</h2>
+                <pre>
+                    $(document).ready(function(){
+                    	$(".jquery_tabs").accessibleTabs({
+                    	    fx:"slideDown",
+                    	    tabbody:'.text'
+                    	});
+                    });
+                </pre>
 				<p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
 				<!-- End: IE Column Clearing -->
 			</div>

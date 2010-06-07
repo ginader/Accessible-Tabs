@@ -10,7 +10,7 @@
     } html>body {font-size:small;}
 
   .tabs {
-    float:left;
+    /*float:left;*/
     width:100%;
     background:#DAE0D2 url("bg.gif") repeat-x bottom;
     font-size:93%;
@@ -69,7 +69,7 @@
         width:500px;
     }
 
-    h1{
+    h1,h2,p{
         margin:1em;
     }
     .tabs{

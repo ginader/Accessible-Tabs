@@ -8,35 +8,65 @@
     <meta name="author" content="Dirk Ginader">
     <script type="text/javascript">document.documentElement.className += " js";</script>
     <link rel="stylesheet" href="slidingdoors/simple-sliding-doors.css" type="text/css" media="screen">
-    <script src="js/jquery-1.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery-1.4.2.js" type="text/javascript" charset="utf-8"></script>
     <script src="js/jquery.tabs.js" type="text/javascript" charset="utf-8"></script>
+    <script src="js/jquery.syncheight.js" type="text/javascript" charset="utf-8"></script>
+    
     <script type="text/javascript">
 
     $(document).ready(function(){
-        $(".tabs").accessibleTabs({
+        var tabs = $(".tabs").accessibleTabs({
             tabhead:'h2',
-            fx:"show",
-            fxspeed:null
+            fx:"fadeIn",
+            syncheights:true
+        });
+        $("a[href=#dummy-text]").click(function(){
+            tabs.showAccessibleTab(1);
         });
     });
 
     </script>    
 </head>
 <body>
-    <h1>Accessible Tabs Example</h1>
+    <h1>Accessible Tabs Opening a Tab from a link in the page</h1>
     <div class="tabs">
         <h2>some dummy text</h2>
         <div class="tabbody">
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
             <h3>Lorem ipsum</h3>
+            <ul>
+                <li>bla</li>
+                <li><a href="#dummy-text">bla bla</a></li>
+            </ul>
             <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
         </div>
-        <h2>some more dummy text</h2>
+        <h2 id="dummy-text">some more dummy text</h2>
         <div class="tabbody">
             <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. </p>
             <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque</p>
         </div>
-        <h2>anything else</h2>
+        <h2 id="anything-else">anything else</h2>
+        <div class="tabbody">
+            <p>Here could be your content</p>
+        </div>
+    </div>
+    <div class="tabs">
+        <h2>some dummy text</h2>
+        <div class="tabbody">
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
+            <h3>Lorem ipsum</h3>
+            <ul>
+                <li>bla</li>
+                <li><a href="#dummy-text">bla bla</a></li>
+            </ul>
+            <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
+        </div>
+        <h2 id="dummy-text">some more dummy text</h2>
+        <div class="tabbody">
+            <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. </p>
+            <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque</p>
+        </div>
+        <h2 id="anything-else">anything else</h2>
         <div class="tabbody">
             <p>Here could be your content</p>
         </div>
@@ -44,10 +74,13 @@
     <h2>Usage</h2>
     <pre>
         $(document).ready(function(){
-            $(".tabs").accessibleTabs({
+            var tabs = $(".tabs").accessibleTabs({
                 tabhead:'h2',
-                fx:"show",
-                fxspeed:null
+                fx:"fadeIn",
+                syncheights:true
+            });
+            $("a[href=#dummy-text]").click(function(){
+                tabs.showAccessibleTab(1); //tabs indexes start with 0
             });
         });
     </pre>

@@ -61,12 +61,12 @@
     <script type="text/javascript">
 
     $(document).ready(function(){
-    	$(".tabs").accessibleTabs({
-    	    tabhead:'h2',
-    	    fx:"fadeIn",
+        $(".tabs").accessibleTabs({
+            tabhead:'h2',
+            fx:"fadeIn",
             syncheights:true,
-    	    pagination:true
-    	});
+            pagination:true
+        });
     });
 
     </script>    
@@ -90,15 +90,34 @@
             <p>Here could be your content</p>
         </div>
     </div>
+    <h2>Usage</h2>
+    <p>Setting "pagination" to true will append the following extra markup into each tab body:</p>
+    <pre>
+        &lt;ul class=&quot;pagination&quot;&gt;
+            &lt;li class=&quot;previous&quot;&gt;&lt;a href=&quot;#{the-id-of-the-previous-tab}&quot;&gt;&lt;span&gt;{the headline of the previous tab}&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+            &lt;li class=&quot;next&quot;&gt;&lt;a href=&quot;#{the-id-of-the-next-tab}&quot;&gt;&lt;span&gt;{the headline of the previous tab}&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    </pre>
+    <p>the link text is being pushed offscreen in this example</p>
+    <pre>
+        $(document).ready(function(){
+            $(".tabs").accessibleTabs({
+                tabhead:'h2',
+                fx:"fadeIn",
+                syncheights:true,
+                pagination:true
+            });
+        });
+    </pre>
     <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
     <script type="text/javascript">
-    //var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-    //document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
     <script type="text/javascript">
-    //var pageTracker = _gat._getTracker("UA-299719-2");
-    //pageTracker._initData();
-    //pageTracker._trackPageview();
+    var pageTracker = _gat._getTracker("UA-299719-2");
+    pageTracker._initData();
+    pageTracker._trackPageview();
     </script>
 </body>
 </html>

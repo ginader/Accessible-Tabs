@@ -70,8 +70,22 @@
             <p>Here could be your content</p>
         </div>
     </div>
+    <h2>Usage</h2>
+    <p>When "saveState" is set to true each widget will remember it's active state in a cookie.<br>
+        This requires each Widget and each of its Headlines to have an ID so this can be remembered.</p>
+        <p>This requires the <a href="http://plugins.jquery.com/project/Cookie">jQuery Cookie plugin</a> to be included in the page
+    <pre>
+        $(document).ready(function(){
+            var tabs = $(".tabs").accessibleTabs({
+                tabhead:'h2',
+                fx:"fadeIn",
+                syncheights:true,
+                saveState:true
+            });
+        });
+    </pre>
     <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
@@ -79,6 +93,6 @@
     var pageTracker = _gat._getTracker("UA-299719-2");
     pageTracker._initData();
     pageTracker._trackPageview();
-    </script> -->
+    </script>
 </body>
 </html>

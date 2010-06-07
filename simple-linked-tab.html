@@ -13,11 +13,11 @@
     <script type="text/javascript">
 
     $(document).ready(function(){
-    	$(".tabs").accessibleTabs({
-    	    tabhead:'h2',
-    	    fx:"fadeIn",
-    	    autoAnchor:true
-    	});
+        $(".tabs").accessibleTabs({
+            tabhead:'h2',
+            fx:"fadeIn",
+            autoAnchor:true
+        });
     });
 
     </script>    
@@ -42,6 +42,18 @@
             <p>Here could be your content</p>
         </div>
     </div>
+    <h2>Usage</h2>
+    <p>setting "autoAnchor" to true will make the tab widget check the url when initialized.
+        If the url contains an anchor pointing to one of the tabs this tab will be displayed</p>
+    <pre>
+        $(document).ready(function(){
+            $(".tabs").accessibleTabs({
+                tabhead:'h2',
+                fx:"fadeIn",
+                autoAnchor:true
+            });
+        });
+    </pre>
     <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

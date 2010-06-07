@@ -19,7 +19,7 @@
             tabhead:'h2',
             fx:"fadeIn"
         });
-        var amountOfTabs = 3;
+        var amountOfTabs = tabs.find('.tabbody').size(); //find the amount of tabs in the widget
         var randomTab = Math.floor(Math.random()*amountOfTabs);
         tabs.showAccessibleTab(randomTab);
     });
@@ -49,8 +49,20 @@
             <p>Here could be your content</p>
         </div>
     </div>
+    <h2>Usage</h2>
+    <pre>
+        $(document).ready(function(){
+            var tabs = $(".tabs").accessibleTabs({
+                tabhead:'h2',
+                fx:"fadeIn"
+            });
+            var amountOfTabs = tabs.find('.tabbody').size(); //find the amount of tabs in the widget
+            var randomTab = Math.floor(Math.random()*amountOfTabs);
+            tabs.showAccessibleTab(randomTab);
+        });
+    </pre>
     <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
     </script>
@@ -58,6 +70,6 @@
     var pageTracker = _gat._getTracker("UA-299719-2");
     pageTracker._initData();
     pageTracker._trackPageview();
-    </script> -->
+    </script>
 </body>
 </html>
