@@ -1,136 +1,25 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
 <head>
-<title>jQuery | accessible-tabs-plugin example</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<!-- (en) Add your meta data here -->
-<!-- (de) Fuegen Sie hier ihre Meta-Daten ein -->
-
-<script type="text/javascript">document.documentElement.className += " js";</script>
-
-<!-- jQuery & Plugins -->
-<script src="js/jquery-1.4.2.js" type="text/javascript"></script>
-
-<script type="text/javascript" src="js/jquery.tabs.js"></script>
-
-<link href="css/my_layout.css" rel="stylesheet" type="text/css"/>
-<!--[if lte IE 7]>
-<link href="css/patches/patch_my_layout.css" rel="stylesheet" type="text/css" />
-<![endif]-->
-
-<script type="text/javascript">
-
-$(document).ready(function(){
-	$(".jquery_tabs").accessibleTabs({fx:"slideDown",tabbody:'.text'});
-});
-
-</script>
-
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Accessible Tabs Examples</title>
+	<meta name="author" content="Dirk Ginader">
 </head>
 <body>
-<div id="page_margins">
-	<div id="page">
-		<div id="header">
-			<div id="topnav">
-				<!-- start: skip link navigation -->
-				<a class="skip" href="#navigation" title="skip link">Skip to the navigation</a><span class="hideme">.</span>
-				<a class="skip" href="#content" title="skip link">Skip to the content</a><span class="hideme">.</span>
-				<!-- end: skip link navigation -->
-				<span><a href="#">Login</a> | <a href="#">Contact</a> | <a href="#">Imprint</a></span> </div>
-			<h1>jQuery | accessible-tabs-plugin example</h1>
-			<span>A YAML based Layout in a <em>ready to use</em> project structure</span></div>
-		<!-- begin: main navigation #nav -->
-		<!-- <div id="nav"> <a id="navigation" name="navigation"></a>
-		          
-		          <div id="nav_main">
-		              <ul>
-		                  <li id="current"><a href="#">Button 1</a></li>
-		                  <li><a href="#">Button 2</a></li>
-		                  <li><a href="#">Button 3</a></li>
-		                  <li><a href="#">Button 4</a></li>
-		                  <li><a href="#">Button 5</a></li>
-		              </ul>
-		          </div>
-		      </div> -->
-		<!-- end: main navigation -->
-		<!-- begin: main content area #main -->
-		<div id="main">
-			<!-- begin: #col1 - first float column -->
-			<div id="col1">
-				<div id="col1_content" class="clearfix">
-					<h2>Column  #col1</h2>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
-					<h3>Lorem ipsum ... </h3>
-					<p>Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
-				</div>
-			</div>
-			<!-- end: #col1 -->
-			<!-- begin: #col3 static column -->
-			<div id="col3">
-				<div id="col3_content" class="clearfix"> <a id="content" name="content"></a>
-					<!-- skiplink anchor: Content -->
-					<h2>Column  #col3</h2>
-<p>Here comes some example content that will be used to dynamically create accessible tabs.</p>
-
-<div class="jquery_tabs">
-<h4>html code example</h4>
-
-<code class="xhtml text" id="subtemplate-example-50-50">&lt;!-- Subtemplate: 2 Spalten mit 50/50 Teilung --&gt;
-<br />
-	&lt;div class=&quot;subcolumns&quot;&gt;<br />
-	&nbsp;&nbsp;&lt;div class=&quot;c50l&quot;&gt;<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;subcl&quot;&gt;<br />
-
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Inhalt linker Block --&gt;<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
-	&nbsp;&nbsp;&lt;/div&gt;<br />
-  <br />
-	&nbsp;&nbsp;&lt;div class=&quot;c50r&quot;&gt;<br />
-
-	&nbsp;&nbsp;&nbsp;&nbsp;&lt;div class=&quot;subcr&quot;&gt;<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;!-- Inhalt rechter Block --&gt;<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br />
-	&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;<br />
-	&nbsp;&nbsp;&lt;/div&gt;<br />
-	&lt;/div&gt;      </code>
-
-<h4>some dummy text</h4>
-    <div class="text" id="some-blind-text">
-	<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
-	<h3>Lorem ipsum ... </h3>
-	<p>Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
-    </div>
-<h4>anything else</h4>
-    <div class="text">
-	<p>Here could be your content</p>
-    </div>
-</div>
-
-				</div>
-				<div id="ie_clearing">&nbsp;</div>
-				<p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
-				<!-- End: IE Column Clearing -->
-			</div>
-			<!-- end: #col3 -->
-		</div>
-		<!-- end: #main -->
-		<!-- begin: #footer -->
-		<div id="footer">Footer with copyright notice and status information<br />
-Layout based on <a href="http://www.yaml.de/">YAML</a></div>
-		<!-- end: #footer -->
-	</div>
-</div>
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-299719-2");
-pageTracker._initData();
-pageTracker._trackPageview();
-</script>
+<h1>Accessible Tabs Examples</h1>
+<ul>
+    <li><a href="simple.html">Simple Example</a></li>
+    <li><a href="yaml.html">Example in a YAML Environment</a></li>
+    <li><a href="no-animation.html">Example without Animations</a></li>
+    <li><a href="randomtab.html">Example showing a different random tab every reload</a></li>
+    <li><a href="synchedheights.html">Syncing the height of the tabs to the heighest</a></li>
+    <li><a href="simple-linked-tab.html#tab1">Direct Link into a tab widget to show the first tab</a></li>
+    <li><a href="simple-linked-tab.html#tab2">Direct Link into a tab widget to show the second tab</a></li>
+    <li><a href="simple-linked-tab.html#tab3">Direct into a tab widget Link to show the third tab</a></li>
+    <li><a href="save-state.html">Example saving it's selected state in a cookie (select and reload)</a></li>
+    <li><a href="simple-pagination.html">Example showing how to paginate between tabs</a></li>
+</ul>
 </body>
 </html>
