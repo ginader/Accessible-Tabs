@@ -74,7 +74,7 @@
                 cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
                 saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
                 autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
-                pagination:false // adds buttons to each tab to swtich to the next/previous tab
+                pagination:false // adds buttons to each tab to switch to the next/previous tab
             };
             var keyCodes = {
                 37 : -1, //LEFT

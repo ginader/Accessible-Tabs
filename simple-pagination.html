@@ -39,7 +39,8 @@
         background-repeat:no-repeat;
         background-position:left;
     }
-    .tabs .pagination a:hover{
+    .tabs .pagination a:hover,
+    .tabs .pagination a:focus{
         filter:alpha(opacity=70);
         opacity: 0.70;
         -moz-opacity:0.70;
@@ -98,18 +99,21 @@
             &lt;li class=&quot;next&quot;&gt;&lt;a href=&quot;#{the-id-of-the-next-tab}&quot;&gt;&lt;span&gt;{the headline of the previous tab}&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
         &lt;/ul&gt;
     </pre>
-    <p>the link text is being pushed offscreen in this example</p>
-    <pre>
+    <p>the link text (in the &lt;span&gt;) is being pushed offscreen using CSS in this example so you only see the background images (the triangles)</p>
+    <pre><code>
         $(document).ready(function(){
             $(".tabs").accessibleTabs({
                 tabhead:'h2',
                 fx:"fadeIn",
                 syncheights:true,
-                pagination:true
+                <strong>pagination:true</strong>
             });
         });
-    </pre>
-    <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
+    </code></pre>
+    <p class="about">
+        Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible<br></a>
+        Or check out <a href="index.html">more Examples</a>
+    </p>
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

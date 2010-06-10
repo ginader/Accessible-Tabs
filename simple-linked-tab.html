@@ -45,16 +45,24 @@
     <h2>Usage</h2>
     <p>setting "autoAnchor" to true will make the tab widget check the url when initialized.
         If the url contains an anchor pointing to one of the tabs this tab will be displayed</p>
-    <pre>
+        <p>You need to make sure you give the head of the tab you want to link to an unique id:</p>
+    <pre><code>
+        &lt;h2 <strong>id=&quot;tab1&quot;</strong>&gt;some dummy text&lt;/h2&gt;
+        &lt;div class=&quot;tabbody&quot;&gt;&lt;/div&gt;
+    </code></pre>
+    <pre><code>
         $(document).ready(function(){
             $(".tabs").accessibleTabs({
                 tabhead:'h2',
                 fx:"fadeIn",
-                autoAnchor:true
+                <strong>autoAnchor:true</strong>
             });
         });
-    </pre>
-    <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
+    </code></pre>
+    <p class="about">
+        Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible<br></a>
+        Or check out <a href="index.html">more Examples</a>
+    </p>
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));

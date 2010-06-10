@@ -23,7 +23,7 @@
     </script>    
 </head>
 <body>
-    <h1>Accessible Tabs Example</h1>
+    <h1>No Animation - Accessible Tabs Example</h1>
     <div class="tabs">
         <h2>some dummy text</h2>
         <div class="tabbody">
@@ -42,16 +42,19 @@
         </div>
     </div>
     <h2>Usage</h2>
-    <pre>
+    <pre><code>
         $(document).ready(function(){
             $(".tabs").accessibleTabs({
                 tabhead:'h2',
-                fx:"show",
-                fxspeed:null
+                <strong>fx:"show",
+                fxspeed:null</strong>
             });
         });
-    </pre>
-    <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
+    </code></pre>
+    <p class="about">
+        Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible<br></a>
+        Or check out <a href="index.html">more Examples</a>
+    </p>
     <script type="text/javascript">
     var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
     document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
