@@ -20,8 +20,13 @@
             fx:"fadeIn",
             syncheights:true
         });
-        $("a[href=#dummy-text]").click(function(){
+        $("a[href=#dummy-text]").click(function(e){
+            e.preventDefault();
             tabs.showAccessibleTab(1);
+        });
+        $("a[href=#anything-else]").click(function(e){
+            e.preventDefault();
+            tabs.showAccessibleTab(2);
         });
     });
 
@@ -35,8 +40,8 @@
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
             <h3>Lorem ipsum</h3>
             <ul>
-                <li>bla</li>
-                <li><a href="#dummy-text">bla bla</a></li>
+                <li><a href="#dummy-text">click here to show tab number 2</a></li>
+                <li><a href="#anything-else">click here to show tab number 3</a></li>
             </ul>
             <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
         </div>
@@ -50,27 +55,7 @@
             <p>Here could be your content</p>
         </div>
     </div>
-    <div class="tabs">
-        <h2>some dummy text</h2>
-        <div class="tabbody">
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nullam malesuada   suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   </p>
-            <h3>Lorem ipsum</h3>
-            <ul>
-                <li>bla</li>
-                <li><a href="#dummy-text">bla bla</a></li>
-            </ul>
-            <p>Nullam malesuada suscipit pede. Nullam ipsum lacus, varius vel, nonummy in, consequat ut, neque.   Vivamus viverra. Duis dolor arcu, lacinia sit amet, sollicitudin sed, aliquet   vel, quam. Pellentesque molestie laoreet tortor. Aenean quam. Pellentesque magna   metus, venenatis sit amet, congue nec, dictum in, est. Aliquam nibh. </p>
-        </div>
-        <h2 id="dummy-text">some more dummy text</h2>
-        <div class="tabbody">
-            <p>Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. </p>
-            <p>Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque</p>
-        </div>
-        <h2 id="anything-else">anything else</h2>
-        <div class="tabbody">
-            <p>Here could be your content</p>
-        </div>
-    </div>
+
     <h2>Usage</h2>
     <pre><code>
         $(document).ready(function(){
@@ -79,7 +64,8 @@
                 fx:"fadeIn",
                 syncheights:true
             });
-            <strong>$("a[href=#dummy-text]").click(function(){ // make a link that points to #dummy-text open a tab
+            <strong>$("a[href=#dummy-text]").click(function(e){ // make a link that points to #dummy-text open a tab
+                e.preventDefault(); // avoid the jumping of the page when clicking the anchor
                 tabs.showAccessibleTab(1); //tabs indexes start with 0
             });</strong>
         });
