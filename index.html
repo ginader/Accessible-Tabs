@@ -23,23 +23,29 @@
     <li><a href="simple-pagination.html">Example showing how to paginate between tabs</a></li>
 </ul>
 <p>you can overwrite each of the following settings in the initialization call:</p>
-<pre><code>    wrapperClass: 'content', // Classname to apply to the div that is wrapped around the original Markup
-    currentClass: 'current', // Classname to apply to the LI of the selected Tab
-    tabhead: 'h4', // Tag or valid Query Selector of the Elements to Transform the Tabs-Navigation from (originals are removed)
-    tabheadClass: 'tabhead', // Classname to apply to the target heading element for each tab div
-    tabbody: '.tabbody', // Tag or valid Query Selector of the Elements to be treated as the Tab Body
-    fx:'show', // can be "fadeIn", "slideDown", "show"
-    fxspeed: 'normal', // speed (String|Number): "slow", "normal", or "fast") or the number of milliseconds to run the animation
-    currentInfoText: 'current tab: ', // text to indicate for screenreaders which tab is the current one
-    currentInfoPosition: 'prepend', // Definition where to insert the Info Text. Can be either "prepend" or "append"
-    currentInfoClass: 'current-info', // Class to apply to the span wrapping the CurrentInfoText
-    tabsListClass:'tabs-list', // Class to apply to the generated list of tabs above the content
-    syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
-    syncHeightMethodName:'syncHeight', // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
-    cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
-    saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
-    autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
-    pagination:false // adds buttons to each tab to switch to the next/previous tab
+<pre><code>&lt;script&gt;
+    $(document).ready(function(){
+        $(".tabs").accessibleTabs({
+            wrapperClass: 'content', // Classname to apply to the div that is wrapped around the original Markup
+            currentClass: 'current', // Classname to apply to the LI of the selected Tab
+            tabhead: 'h4', // Tag or valid Query Selector of the Elements to Transform the Tabs-Navigation from (originals are removed)
+            tabheadClass: 'tabhead', // Classname to apply to the target heading element for each tab div
+            tabbody: '.tabbody', // Tag or valid Query Selector of the Elements to be treated as the Tab Body
+            fx:'show', // can be "fadeIn", "slideDown", "show"
+            fxspeed: 'normal', // speed (String|Number): "slow", "normal", or "fast") or the number of milliseconds to run the animation
+            currentInfoText: 'current tab: ', // text to indicate for screenreaders which tab is the current one
+            currentInfoPosition: 'prepend', // Definition where to insert the Info Text. Can be either "prepend" or "append"
+            currentInfoClass: 'current-info', // Class to apply to the span wrapping the CurrentInfoText
+            tabsListClass:'tabs-list', // Class to apply to the generated list of tabs above the content
+            syncheights:false, // syncs the heights of the tab contents when the SyncHeight plugin is available http://blog.ginader.de/dev/jquery/syncheight/index.php
+            syncHeightMethodName:'syncHeight', // set the Method name of the plugin you want to use to sync the tab contents. Defaults to the SyncHeight plugin: http://github.com/ginader/syncHeight
+            cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
+            saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
+            autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
+            pagination:false // adds buttons to each tab to switch to the next/previous tab
+        });
+    });
+&lt;/script&gt;
 </code></pre>
 <p class="about">Want to learn more about this? <a href="http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php">jQuery Accessible Tabs - How to make tabs REALLY accessible</a></p>
 <script type="text/javascript">
