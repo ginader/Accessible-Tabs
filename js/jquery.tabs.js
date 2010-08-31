@@ -223,11 +223,13 @@
             var o = this;
             if(id){
                 var el = $('#'+id);
+                el.trigger("showTab.accessibleTabs");
                 var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
                 links.eq(index).click();
             }else{
                 return this.each(function() {
                     var el = $(this);
+                    el.trigger("showTab.accessibleTabs");
                     var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
                     links.eq(index).click();
                 });
