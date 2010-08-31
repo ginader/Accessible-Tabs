@@ -221,16 +221,17 @@
         showAccessibleTab: function(index,id){
             debug('showAccessibleTab');
             var o = this;
-            if(id){
+            if(id) {
                 var el = $('#'+id);
-                el.trigger("showTab.accessibleTabs");
                 var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
+                el.trigger("showTab.accessibleTabs", links.eq(index));
                 links.eq(index).click();
-            }else{
+            } else {
                 return this.each(function() {
                     var el = $(this);
                     el.trigger("showTab.accessibleTabs");
                     var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
+                    el.trigger("showTab.accessibleTabs", links.eq(index));
                     links.eq(index).click();
                 });
             }
