@@ -100,10 +100,9 @@
                     }
                     var tabId = o.getUniqueId('accessibletabscontent', t, i);//get a unique id to assign to this tab's heading
                     ids.push(tabId);
-                    $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     if(o.options.cssClassAvailable === true) {
                         var cssClass = '';
-                        if($(el).attr('class')) {
+                        if($(this).attr('class')) {
                             cssClass = $(this).attr('class');
                             cssClass = ' class="'+cssClass+'"';
                             list += '<li><a'+id+''+cssClass+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
@@ -111,6 +110,7 @@
                     } else {
                         list += '<li><a'+id+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                     }
+                    $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     tabCount++;
                 });
 
@@ -130,6 +130,7 @@
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
+                        el.trigger("showTab.accessibleTabs", [$(event.target)]);
                         if(o.options.saveState && $.cookie){
                             $.cookie('accessibletab_'+el.attr('id')+'_active',i);
                         }
@@ -224,14 +225,14 @@
             if(id) {
                 var el = $('#'+id);
                 var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
-                el.trigger("showTab.accessibleTabs", links.eq(index));
+                el.trigger("showTab.accessibleTabs", [links.eq(index)]);
                 links.eq(index).click();
             } else {
                 return this.each(function() {
                     var el = $(this);
                     el.trigger("showTab.accessibleTabs");
                     var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
-                    el.trigger("showTab.accessibleTabs", links.eq(index));
+                    el.trigger("showTab.accessibleTabs", [links.eq(index)]);
                     links.eq(index).click();
                 });
             }
