@@ -21,6 +21,7 @@
     <li><a href="simple-linked-tab.html#tab3">Direct link into a tab widget to show the third tab</a></li>
     <li><a href="save-state.html">Example saving it's selected state in a cookie (select and reload)</a></li>
     <li><a href="simple-pagination.html">Example showing how to paginate between tabs</a></li>
+    <li><a href="simple-underneath.html">Example showing how to display the tabs underneath the tab-content</a></li>
 </ul>
 <p>you can overwrite each of the following settings in the initialization call. Every single one is optional.</p>
 <pre><code>&lt;script&gt;
@@ -42,7 +43,8 @@
             cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
             saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
             autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
-            pagination:false // adds buttons to each tab to switch to the next/previous tab
+            pagination:false, // adds buttons to each tab to switch to the next/previous tab
+            position:'top' // can be 'top' or 'bottom'. Defines where the tabs list is inserted. 
         });
     });
 &lt;/script&gt;
