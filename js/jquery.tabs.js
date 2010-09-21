@@ -43,7 +43,8 @@
      <li class="previous"><a href="#{the-id-of-the-previous-tab}"><span>{the headline of the previous tab}</span></a></li>
      <li class="next"><a href="#{the-id-of-the-next-tab}"><span>{the headline of the previous tab}</span></a></li>
  </ul>
- 
+ * * 1.8
+ * * * new option "position" can be 'top' or 'bottom'. Defines where the tabs list is inserted. 
  */
 
 
@@ -74,7 +75,8 @@
                 cssClassAvailable:false, // Enable individual css classes for tabs. Gets the appropriate class name of a tabhead element and apply it to the tab list element. Boolean value
                 saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
                 autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
-                pagination:false // adds buttons to each tab to switch to the next/previous tab
+                pagination:false, // adds buttons to each tab to switch to the next/previous tab
+                position:'top' // can be 'top' or 'bottom'. Defines where the tabs list is inserted. 
             };
             var keyCodes = {
                 37 : -1, //LEFT
@@ -82,6 +84,10 @@
                 39 : +1, //RIGHT 
                 40 : +1 //DOWN
             };
+            var positions = {
+                top : 'prepend',
+                bottom : 'append'
+            }
             this.options = $.extend(defaults, config);
             var o = this;
             return this.each(function(t) {
@@ -114,7 +120,7 @@
                     tabCount++;
                 });
 
-                $(el).prepend('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
+                $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
                 $(el).find(o.options.tabbody).hide();
                 $(el).find(o.options.tabbody+':first').show();
                 $(el).find("ul>li:first").addClass(o.options.currentClass)
