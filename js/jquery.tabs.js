@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.7
+ * Version: 1.8.1
  * 
  * History:
  * * 1.0 initial release
@@ -45,6 +45,8 @@
  </ul>
  * * 1.8
  * * * new option "position" can be 'top' or 'bottom'. Defines where the tabs list is inserted. 
+ * * 1.8.1
+ * * * Bugfix for broken pagination in ie6 and 7: Selector and object access modified by Daniel Köntös (www.MilkmanMedia.de). Thanks to Carolin Moll for the report.
  */
 
 
@@ -212,14 +214,14 @@
                         previousEl.find('a').attr('href','#'+ids[previous])
                         .click(function(event){
                             event.preventDefault();
-                            $(el).find('.tabs-list a[href|=#'+ids[previous]+']').click();
+                            $(el).find('.tabs-list a').eq(previous).click();
                         });
                         var nextEl = p.find('.next');
                         nextEl.find('span').text($('#'+ids[next]).text());
                         nextEl.find('a').attr('href','#'+ids[next])
                         .click(function(event){
                             event.preventDefault();
-                            $(el).find('.tabs-list a[href|=#'+ids[next]+']').click();
+                            $(el).find('.tabs-list a').eq(next).click();
                         });
                     });
                 }
