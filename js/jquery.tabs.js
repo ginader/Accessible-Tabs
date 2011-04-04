@@ -89,7 +89,7 @@
             var positions = {
                 top : 'prepend',
                 bottom : 'append'
-            }
+            };
             this.options = $.extend(defaults, config);
             var o = this;
             return this.each(function(t) {
@@ -97,9 +97,9 @@
                 var list = '';
                 var tabCount = 0;
                 ids = [];
-
+                
                 $(el).wrapInner('<div class="'+o.options.wrapperClass+'"></div>');
-
+                
                 $(el).find(o.options.tabhead).each(function(i){
                     var id = '';
                     elId = $(this).attr('id');
@@ -121,20 +121,20 @@
                     $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     tabCount++;
                 });
-
-                $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
-                $(el).find(o.options.tabbody).hide();
-                $(el).find(o.options.tabbody+':first').show();
-                $(el).find("ul>li:first").addClass(o.options.currentClass)
-                .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>');
-
+                
                 if (o.options.syncheights && $.fn[o.options.syncHeightMethodName]) {
                     $(el).find(o.options.tabbody)[o.options.syncHeightMethodName]();
                     $(window).resize(function(){ 
                         $(el).find(o.options.tabbody)[o.options.syncHeightMethodName]();
                     });
                 }
-
+                
+                $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
+                $(el).find(o.options.tabbody).hide();
+                $(el).find(o.options.tabbody+':first').show();
+                $(el).find("ul>li:first").addClass(o.options.currentClass)
+                .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>');
+                
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
@@ -156,7 +156,7 @@
                                 $(this).unbind( "keyup" );
                             }
                         });
-
+                        
                         // $(el).find('.accessibletabsanchor').keyup(function(event){
                         //     if(keyCodes[event.keyCode]){
                         //         o.showAccessibleTab(i+keyCodes[event.keyCode]);
@@ -165,7 +165,7 @@
                         
                         
                     });
-
+                    
                     $(this).focus(function(event){
                         $(document).keyup(function(event){
                             if(keyCodes[event.keyCode]){
@@ -176,24 +176,23 @@
                     $(this).blur(function(event){
                         $(document).unbind( "keyup" );
                     });
-                
                     
                 });
-
+                
                 if(o.options.saveState && $.cookie){
                     var savedState = $.cookie('accessibletab_'+el.attr('id')+'_active');
                     debug($.cookie('accessibletab_'+el.attr('id')+'_active'));
-                    if(savedState != null){
+                    if(savedState !== null){
                         o.showAccessibleTab(savedState,el.attr('id'));
                     }
-                };
+                }
                 
                 if(o.options.autoAnchor && window.location.hash){
                     var anchorTab = $('.'+o.options.tabsListClass).find(window.location.hash);
                     if(anchorTab.size()){
                         anchorTab.click();
                     }
-                };
+                }
                 
                 if(o.options.pagination){
                     var m = '<ul class="pagination">';
