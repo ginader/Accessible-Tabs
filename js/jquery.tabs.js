@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.8.1
+ * Version: 1.8.2
  * 
  * History:
  * * 1.0 initial release
@@ -47,6 +47,8 @@
  * * * new option "position" can be 'top' or 'bottom'. Defines where the tabs list is inserted. 
  * * 1.8.1
  * * * Bugfix for broken pagination in ie6 and 7: Selector and object access modified by Daniel Köntös (www.MilkmanMedia.de). Thanks to Carolin Moll for the report.
+ * * 1.8.2
+ * * * Bugfix for issue described by Sunshine here: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php#c916
  */
 
 
