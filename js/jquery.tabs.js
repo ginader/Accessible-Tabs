@@ -134,7 +134,7 @@
                 $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
                 $(el).find(o.options.tabbody).hide();
                 $(el).find(o.options.tabbody+':first').show();
-                $(el).find("ul>li:first").addClass(o.options.currentClass)
+                $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass)
                 .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>');
                 
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
@@ -144,7 +144,7 @@
                         if(o.options.saveState && $.cookie){
                             $.cookie('accessibletab_'+el.attr('id')+'_active',i);
                         }
-                        $(el).find('ul>li.'+o.options.currentClass).removeClass(o.options.currentClass)
+                        $(el).find('ul.'+o.options.tabsListClass+'>li.'+o.options.currentClass).removeClass(o.options.currentClass)
                         .find("span."+o.options.currentInfoClass).remove();
                         $(this).blur();
                         $(el).find(o.options.tabbody+':visible').hide();
