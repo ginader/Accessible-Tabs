@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.8.3
+ * Version: 1.9
  * 
  * History:
  * * 1.0 initial release
@@ -51,11 +51,14 @@
  * * * Bugfix for issue described by Sunshine here: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php#c916
  * * 1.8.3
  * * * Bugfix by Michael Schulze: Only change current class in tab navigation and not in all unordered lists inside the tabs.
+ * * 1.9
+ * * * new method showAccessibleTabSelector({valid jQuery selector of the tab to show}) that allows the opening of tabs \
+ * * * by jQuery Selector instead of the index in showAccessibleTab() fixing issue https://github.com/ginader/Accessible-Tabs/issues/15
  */
 
 
 (function($) {
-    var debugMode = false;
+    var debugMode = true;
     $.fn.extend({
         // We assume there could be multiple sets of tabs on a page, so,
         // the unique id for each invididual tab's heading is identified with params q and r (e.g., id="accessibletabscontent0-2")
@@ -246,6 +249,18 @@
                     el.trigger("showTab.accessibleTabs", [links.eq(index)]);
                     links.eq(index).click();
                 });
+            }
+        },
+        showAccessibleTabSelector: function(selector){
+            debug('showAccessibleTabSelector');
+            var o = this;
+            var el = $(selector);
+            if(el){
+                if(el.get(0).nodeName.toLowerCase() == 'a'){
+                    el.click();
+                }else{
+                    debug('the selector of a showAccessibleTabSelector() call needs to point to a tabs headline!');
+                }
             }
         }
     });
