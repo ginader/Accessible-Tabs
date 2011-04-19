@@ -85,7 +85,8 @@
                 saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
                 autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
                 pagination:false, // adds buttons to each tab to switch to the next/previous tab
-                position:'top' // can be 'top' or 'bottom'. Defines where the tabs list is inserted. 
+                position:'top', // can be 'top' or 'bottom'. Defines where the tabs list is inserted.
+                wrapInner: '' // inner wrap for a-tags in tab navigation. See http://api.jquery.com/wrapInner/ for further informations
             };
             var keyCodes = {
                 37 : -1, //LEFT
@@ -123,7 +124,7 @@
                             list += '<li><a'+id+''+cssClass+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                         }
                     } else {
-                        list += '<li><a'+id+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
+                      list += '<li id="tabs-list-item-'+i+'"><a'+id+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                     }
                     $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     tabCount++;
@@ -139,8 +140,13 @@
                 $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
                 $(el).find(o.options.tabbody).hide();
                 $(el).find(o.options.tabbody+':first').show();
-                $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass)
-                .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>');
+                $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass).addClass('first')
+                  .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
+                  .parents("ul."+o.options.tabsListClass).children('li:last').addClass('last');
+                
+                if (o.options.wrapInner) {
+                  $(el).find('ul.'+o.options.tabsListClass+'>li>a').wrapInner(o.options.wrapInner);
+                }
                 
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
