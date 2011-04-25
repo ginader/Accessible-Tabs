@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.9
+ * Version: 1.9.1
  * 
  * History:
  * * 1.0 initial release
@@ -54,6 +54,9 @@
  * * 1.9
  * * * new method showAccessibleTabSelector({valid jQuery selector of the tab to show}) that allows the opening of tabs \
  * * * by jQuery Selector instead of the index in showAccessibleTab() fixing issue https://github.com/ginader/Accessible-Tabs/issues/15
+ * * 1.9.1 by Michael Schulze: 
+ * * * firstNavItemClass and lastNavItemClass to define a custom classname on the first and last tab
+ * * * wrapInnerNavLinks: inner wrap for a-tags in tab navigation.
  */
 
 
