@@ -86,7 +86,9 @@
                 autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
                 pagination:false, // adds buttons to each tab to switch to the next/previous tab
                 position:'top', // can be 'top' or 'bottom'. Defines where the tabs list is inserted.
-                wrapInner: '' // inner wrap for a-tags in tab navigation. See http://api.jquery.com/wrapInner/ for further informations
+                wrapInnerNavLinks: '', // inner wrap for a-tags in tab navigation. See http://api.jquery.com/wrapInner/ for further informations
+                firstNavItemClass: 'first', // Classname of the first list item in the tab navigation
+                lastNavItemClass: 'last' // Classname of the last list item in the tab navigation
             };
             var keyCodes = {
                 37 : -1, //LEFT
@@ -115,16 +117,17 @@
                         id =' id="'+elId+'"';
                     }
                     var tabId = o.getUniqueId('accessibletabscontent', t, i);//get a unique id to assign to this tab's heading
+                    var navItemId = o.getUniqueId('accessibletabsnavigation', t, i);//get a unique id for this navigation item
                     ids.push(tabId);
                     if(o.options.cssClassAvailable === true) {
                         var cssClass = '';
                         if($(this).attr('class')) {
                             cssClass = $(this).attr('class');
                             cssClass = ' class="'+cssClass+'"';
-                            list += '<li><a'+id+''+cssClass+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
+                            list += '<li id="'+navItemId+'"><a'+id+''+cssClass+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                         }
                     } else {
-                      list += '<li id="tabs-list-item-'+i+'"><a'+id+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
+                      list += '<li id="'+navItemId+'"><a'+id+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                     }
                     $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     tabCount++;
@@ -140,12 +143,12 @@
                 $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
                 $(el).find(o.options.tabbody).hide();
                 $(el).find(o.options.tabbody+':first').show();
-                $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass).addClass('first')
+                $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass).addClass(o.options.firstNavItemClass)
                   .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
-                  .parents("ul."+o.options.tabsListClass).children('li:last').addClass('last');
+                  .parents("ul."+o.options.tabsListClass).children('li:last').addClass(o.options.lastNavItemClass);
                 
-                if (o.options.wrapInner) {
-                  $(el).find('ul.'+o.options.tabsListClass+'>li>a').wrapInner(o.options.wrapInner);
+                if (o.options.wrapInnerNavLinks) {
+                  $(el).find('ul.'+o.options.tabsListClass+'>li>a').wrapInner(o.options.wrapInnerNavLinks);
                 }
                 
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
