@@ -109,14 +109,18 @@
                 var el = $(this);
                 var list = '';
                 var tabCount = 0;
-                ids = [];
-                
+                var ids = [];
+
                 $(el).wrapInner('<div class="'+o.options.wrapperClass+'"></div>');
-                
+
                 $(el).find(o.options.tabhead).each(function(i){
                     var id = '';
                     elId = $(this).attr('id');
                     if(elId){
+                        // Skip this item if it already exists.
+                        if(elId.indexOf('accessibletabscontent') === 0) {
+                            return;
+                        }
                         id =' id="'+elId+'"';
                     }
                     var tabId = o.getUniqueId('accessibletabscontent', t, i);//get a unique id to assign to this tab's heading
@@ -142,8 +146,14 @@
                         $(el).find(o.options.tabbody)[o.options.syncHeightMethodName]();
                     });
                 }
-                
-                $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'">'+list+'</ul>');
+
+                // Ensure that the call to setup tabs is re-runnable
+                var tabs_selector = '.' + o.options.tabsListClass;
+                if(!$(el).find(tabs_selector).length) {
+                    $(el)[positions[o.options.position]]('<ul class="clearfix '+o.options.tabsListClass+' tabamount'+tabCount+'"></ul>');
+                }
+
+                $(el).find(tabs_selector).append(list);
                 $(el).find(o.options.tabbody).hide();
                 $(el).find(o.options.tabbody+':first').show();
                 $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass).addClass(o.options.firstNavItemClass)
