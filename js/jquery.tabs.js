@@ -154,8 +154,13 @@
                 }
 
                 $(el).find(tabs_selector).append(list);
-                $(el).find(o.options.tabbody).hide();
-                $(el).find(o.options.tabbody+':first').show();
+
+                // initial show first content block and hide the others
+                var content = $(el).find(o.options.tabbody);
+                if (content.length > 0) {
+                    $(content).hide();
+                    $(content[0]).show();
+                }
                 $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass).addClass(o.options.firstNavItemClass)
                   .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
                   .parents("ul."+o.options.tabsListClass).children('li:last').addClass(o.options.lastNavItemClass);
