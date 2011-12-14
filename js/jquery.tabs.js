@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.9.1
+ * Version: 1.9.2
  * 
  * History:
  * * 1.0 initial release
@@ -57,6 +57,9 @@
  * * 1.9.1 by Michael Schulze: 
  * * * firstNavItemClass and lastNavItemClass to define a custom classname on the first and last tab
  * * * wrapInnerNavLinks: inner wrap for a-tags in tab navigation.
+ * * 1.9.2
+ * * * Bugfix by Dirk Jesse: fixing an issue that happened when passing multiple selectors to the init call instead of one
+ * * * Bugfix that fixes a reset of the tabs counter when accessibleTabs() was called more than once on a page
  */
 
 
@@ -104,6 +107,13 @@
                 bottom : 'append'
             };
             this.options = $.extend(defaults, config);
+
+            var tabsCount = 0;
+            if($("body").data('accessibleTabsCount') !== undefined){
+                tabsCount = $("body").data('accessibleTabsCount');
+            }
+            $("body").data('accessibleTabsCount',this.size()+tabsCount);
+
             var o = this;
             return this.each(function(t) {
                 var el = $(this);
@@ -123,8 +133,8 @@
                         }
                         id =' id="'+elId+'"';
                     }
-                    var tabId = o.getUniqueId('accessibletabscontent', t, i);//get a unique id to assign to this tab's heading
-                    var navItemId = o.getUniqueId('accessibletabsnavigation', t, i);//get a unique id for this navigation item
+                    var tabId = o.getUniqueId('accessibletabscontent', tabsCount+t, i);//get a unique id to assign to this tab's heading
+                    var navItemId = o.getUniqueId('accessibletabsnavigation', tabsCount+t, i);//get a unique id for this navigation item
                     ids.push(tabId);
                     if(o.options.cssClassAvailable === true) {
                         var cssClass = '';
