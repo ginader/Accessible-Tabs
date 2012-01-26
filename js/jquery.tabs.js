@@ -141,8 +141,8 @@
                         if($(this).attr('class')) {
                             cssClass = $(this).attr('class');
                             cssClass = ' class="'+cssClass+'"';
-                            list += '<li id="'+navItemId+'"><a'+id+''+cssClass+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                         }
+                        list += '<li id="'+navItemId+'"><a'+id+''+cssClass+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                     } else {
                       list += '<li id="'+navItemId+'"><a'+id+' href="#'+tabId+'">'+$(this).html()+'</a></li>';
                     }
