@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.9.2
+ * Version: 1.9.3
  * 
  * History:
  * * 1.0 initial release
@@ -60,6 +60,9 @@
  * * 1.9.2
  * * * Bugfix by Dirk Jesse: fixing an issue that happened when passing multiple selectors to the init call instead of one
  * * * Bugfix that fixes a reset of the tabs counter when accessibleTabs() was called more than once on a page
+ * * 1.9.3
+ * * * Bugfix by Norm: before, when cssClassAvailable was true, all of the tabhead elements had to have classes or they wouldn't get pulled out into tabs. 
+ * * * This commit fixes this assumption, as I only want classes on some elements https://github.com/ginader/Accessible-Tabs/pull/25
  */
 
 
