@@ -1,7 +1,7 @@
 /**
  * Accessible Tabs - jQuery plugin for accessible, unobtrusive tabs
  * Build to seemlessly work with the CCS-Framework YAML (yaml.de) not depending on YAML though
- * @requires jQuery - tested with 1.4.2 but might as well work with older versions
+ * @requires jQuery - tested with 1.7 and 1.4.2 but might as well work with older versions
  *
  * english article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php
  * german article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-Wie-man-Tabs-WIRKLICH-zugaenglich-macht.php
@@ -14,7 +14,7 @@
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
  *
- * Version: 1.9.3
+ * Version: 1.9.4
  * 
  * History:
  * * 1.0 initial release
@@ -63,6 +63,7 @@
  * * 1.9.3
  * * * Bugfix by Norm: before, when cssClassAvailable was true, all of the tabhead elements had to have classes or they wouldn't get pulled out into tabs. 
  * * * This commit fixes this assumption, as I only want classes on some elements https://github.com/ginader/Accessible-Tabs/pull/25
+ * * 1.9.4 Bugfix by Patrick Bruckner to fix issue with Internet Explorer using jQuery 1.7 https://github.com/ginader/Accessible-Tabs/issues/26
  */
 
 
@@ -197,7 +198,7 @@
                         $(this)[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
                         .parent().addClass(o.options.currentClass);
                         //now, only after writing the currentInfoText span to the tab list link, set focus to the tab's heading
-                        $($(this).attr("href")).focus().keyup(function(event){
+                        $($(this).attr("href"),true).focus().keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
                                 $(this).unbind( "keyup" );
