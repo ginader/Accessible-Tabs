@@ -1,14 +1,16 @@
 {
-  "name": "jQuery Accessible-Tabs",
+  "name": "jQuery-Accessible-Tabs",
   "version": "1.9.6",
-  "homepage" : "http://github.com/ginader/Accessible-Tabs",
-  "author" : {
-  	"name" : "Dirk Ginader",
-  	"url"  : "http://ginader.com"
+  "homepage": "http://github.com/ginader/Accessible-Tabs",
+  "author": {
+    "name": "Dirk Ginader",
+    "url": "http://ginader.com"
   },
   "devDependencies": {
     "grunt": "~0.4.0",
     "grunt-contrib-jshint": "~0.1.1",
-    "grunt-contrib-nodeunit": "~0.1.2"
+    "grunt-contrib-uglify": "~0.1.2",
+    "grunt-contrib-watch": "~0.3.1",
+    "grunt-contrib-concat": "~0.1.3"
   }
 }
