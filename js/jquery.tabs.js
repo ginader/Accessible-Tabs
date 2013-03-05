@@ -1,7 +1,7 @@
 /**
  * Accessible Tabs - jQuery plugin for accessible, unobtrusive tabs
  * Build to seemlessly work with the CCS-Framework YAML (yaml.de) not depending on YAML though
- * @requires jQuery - tested with 1.7 and 1.4.2 but might as well work with older versions
+ * @requires jQuery - tested with 1.9.1, 1.7 and 1.4.2 but might as well work with older versions
  *
  * english article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php
  * german article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-Wie-man-Tabs-WIRKLICH-zugaenglich-macht.php
