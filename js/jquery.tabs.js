@@ -200,7 +200,7 @@
                         $(this)[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
                         .parent().addClass(o.options.currentClass);
                         //now, only after writing the currentInfoText span to the tab list link, set focus to the tab's heading
-                        $($(this).attr("href"),true).focus().keyup(function(event){
+                        $($(this).attr("href")).focus().keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
                                 $(this).unbind( "keyup" );
