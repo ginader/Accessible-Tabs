@@ -65,6 +65,7 @@
  * * * This commit fixes this assumption, as I only want classes on some elements https://github.com/ginader/Accessible-Tabs/pull/25
  * * 1.9.4 Bugfix by Patrick Bruckner to fix issue with Internet Explorer using jQuery 1.7 https://github.com/ginader/Accessible-Tabs/issues/26
  * * 1.9.5 new option "clearfixClass" name of the Class that is used to clear/contain floats fixes https://github.com/ginader/Accessible-Tabs/issues/28
+ * * 1.9.6 fix for issue 34
  */
 
 
@@ -155,10 +156,10 @@
                     $(this).attr({"id": tabId, "class": o.options.tabheadClass, "tabindex": "-1"});//assign the unique id and the tabheadClass class name to this tab's heading
                     tabCount++;
                 });
-                
+
                 if (o.options.syncheights && $.fn[o.options.syncHeightMethodName]) {
                     $(el).find(o.options.tabbody)[o.options.syncHeightMethodName]();
-                    $(window).resize(function(){ 
+                    $(window).resize(function(){
                         $(el).find(o.options.tabbody)[o.options.syncHeightMethodName]();
                     });
                 }
@@ -180,14 +181,15 @@
                 $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass).addClass(o.options.firstNavItemClass)
                   .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
                   .parents("ul."+o.options.tabsListClass).children('li:last').addClass(o.options.lastNavItemClass);
-                
+
                 if (o.options.wrapInnerNavLinks) {
                   $(el).find('ul.'+o.options.tabsListClass+'>li>a').wrapInner(o.options.wrapInnerNavLinks);
                 }
-                
+
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
+                        console.log('click');
                         el.trigger("showTab.accessibleTabs", [$(event.target)]);
                         if(o.options.saveState && $.cookie){
                             $.cookie('accessibletab_'+el.attr('id')+'_active',i);
@@ -200,22 +202,21 @@
                         $(this)[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
                         .parent().addClass(o.options.currentClass);
                         //now, only after writing the currentInfoText span to the tab list link, set focus to the tab's heading
+
                         $($(this).attr("href")).focus().keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
                                 $(this).unbind( "keyup" );
                             }
                         });
-                        
+
                         // $(el).find('.accessibletabsanchor').keyup(function(event){
                         //     if(keyCodes[event.keyCode]){
                         //         o.showAccessibleTab(i+keyCodes[event.keyCode]);
                         //     }
                         // });
-                        
-                        
                     });
-                    
+
                     $(this).focus(function(event){
                         $(document).keyup(function(event){
                             if(keyCodes[event.keyCode]){
