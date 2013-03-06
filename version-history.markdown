@@ -50,3 +50,4 @@ Version History:
 * 1.9.4 Bugfix by Patrick Bruckner to fix issue with Internet Explorer using jQuery 1.7 https://github.com/ginader/Accessible-Tabs/issues/26
 * 1.9.5 new option "clearfixClass" name of the Class that is used to clear/contain floats fixes https://github.com/ginader/Accessible-Tabs/issues/28
 * 1.9.6 fix for issue 34
+* 1.9.7 removed Support for IE7

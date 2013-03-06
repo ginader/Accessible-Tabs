@@ -47,6 +47,12 @@ module.exports = function(grunt) {
         files: '<%= jshint.gruntfile.src %>',
         tasks: ['jshint:gruntfile']
       }
+    },
+    removelogging: {
+      dist: {
+        src: 'js/jquery.tabs.min.js',
+        dest: 'js/jquery.tabs.min.js'
+      }
     }
   });
 
@@ -55,8 +61,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks("grunt-remove-logging");
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'uglify', 'removelogging']);
 
 };
