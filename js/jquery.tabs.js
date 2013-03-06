@@ -136,7 +136,6 @@
                 $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
-                        console.log('click');
                         el.trigger("showTab.accessibleTabs", [$(event.target)]);
                         if(o.options.saveState && $.cookie){
                             $.cookie('accessibletab_'+el.attr('id')+'_active',i);
