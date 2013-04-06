@@ -79,7 +79,7 @@
 
                 $(el).find(o.options.tabhead).each(function(i){
                     var id = '';
-                    elId = $(this).attr('id');
+                    var elId = $(this).attr('id');
                     if(elId){
                         // Skip this item if it already exists.
                         if(elId.indexOf('accessibletabscontent') === 0) {
@@ -173,9 +173,9 @@
                     $(this).blur(function(event){
                         $(document).unbind( "keyup" );
                     });
-                    
+
                 });
-                
+
                 if(o.options.saveState && $.cookie){
                     var savedState = $.cookie('accessibletab_'+el.attr('id')+'_active');
                     debug($.cookie('accessibletab_'+el.attr('id')+'_active'));
@@ -183,14 +183,14 @@
                         o.showAccessibleTab(savedState,el.attr('id'));
                     }
                 }
-                
+
                 if(o.options.autoAnchor && window.location.hash){
                     var anchorTab = $('.'+o.options.tabsListClass).find(window.location.hash);
                     if(anchorTab.size()){
                         anchorTab.click();
                     }
                 }
-                
+
                 if(o.options.pagination){
                     var m = '<ul class="pagination">';
                     m +='    <li class="previous"><a href="#{previousAnchor}"><span>{previousHeadline}</span></a></li>';
@@ -246,7 +246,7 @@
             var o = this;
             var el = $(selector);
             if(el){
-                if(el.get(0).nodeName.toLowerCase() == 'a'){
+                if(el.get(0).nodeName.toLowerCase() === 'a'){
                     el.click();
                 }else{
                     debug('the selector of a showAccessibleTabSelector() call needs to point to a tabs headline!');
