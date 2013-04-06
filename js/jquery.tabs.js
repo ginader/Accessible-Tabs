@@ -163,14 +163,14 @@
                         // });
                     });
 
-                    $(this).focus(function(event){
+                    $(this).focus(function(){
                         $(document).keyup(function(event){
                             if(keyCodes[event.keyCode]){
                                 o.showAccessibleTab(i+keyCodes[event.keyCode]);
                             }
                         });
                     });
-                    $(this).blur(function(event){
+                    $(this).blur(function(){
                         $(document).unbind( "keyup" );
                     });
 
@@ -243,7 +243,6 @@
         },
         showAccessibleTabSelector: function(selector){
             debug('showAccessibleTabSelector');
-            var o = this;
             var el = $(selector);
             if(el){
                 if(el.get(0).nodeName.toLowerCase() === 'a'){
