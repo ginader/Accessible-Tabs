@@ -40,7 +40,10 @@ module.exports = function(grunt) {
       },
       gruntfile: {
         src: 'Gruntfile.js'
-      }
+      },
+      tabs: [
+        'js/jquery.tabs.js'
+      ]
     },
     watch: {
       gruntfile: {
