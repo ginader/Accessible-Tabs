@@ -11,9 +11,12 @@ module.exports = function(grunt) {
       '* Dual licensed under the MIT and GPL licenses:\n' +
       '* http://www.opensource.org/licenses/mit-license.php\n' +
       '* http://www.gnu.org/licenses/gpl.html */\n',
+    footer : '\n // :-) \n',
     uglify: {
       options: {
-        banner: '<%= banner %>'
+        banner: '<%= banner %>',
+        footer: '<%= footer %>',
+        mangle: false
       },
       dist: {
         src: 'js/jquery.tabs.js',
