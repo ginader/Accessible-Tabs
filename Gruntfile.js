@@ -11,7 +11,7 @@ module.exports = function(grunt) {
       '* Dual licensed under the MIT and GPL licenses:\n' +
       '* http://www.opensource.org/licenses/mit-license.php\n' +
       '* http://www.gnu.org/licenses/gpl.html */\n',
-    footer : '\n // :-) \n',
+    footer : '\n',
     uglify: {
       options: {
         banner: '<%= banner %>',
