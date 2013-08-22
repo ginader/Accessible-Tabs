@@ -1,0 +1,37 @@
+{
+	"name": "jquery-accessible-tabs",
+	"version": "1.9.8",
+	"title": "jQuery File Upload",
+	"description": "jQuery Plugin that generates a Tab Navigation from Markup that makes sense without Javascript. The generated Tabs are the only ones out there that work for Screenreader users without support for WAI ARIA.",
+	"keywords": [
+		"jquery",
+		"tabs",
+		"accessibility"
+	],
+	"homepage": "http://github.com/ginader/Accessible-Tabs",
+	"author": {
+		"name": "Dirk Ginader",
+		"url": "http://ginader.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/ginader/Accessible-Tabs.git"
+	},
+	"bugs": "https://github.com/ginader/Accessible-Tabs/issues",
+	"licenses": [
+		{
+			"type": "MIT",
+			"url": "http://www.opensource.org/licenses/MIT"
+		},
+		{
+			"type": "GPL",
+			"url": "http://www.gnu.org/licenses/gpl.html"
+		}
+	],
+	"dependencies": {
+		"jquery": ">=1.6"
+	},
+	"main": [
+		"js/jquery.tabs.min.js"
+	]
+}
