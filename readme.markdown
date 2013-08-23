@@ -4,6 +4,17 @@ jQuery Accessible Tabs Plugin
 jQuery Plugin that generates a Tab Navigation from Markup that makes sense without Javascript.
 The generated Tabs are the only ones out there that work for Screenreader users without support for WAI ARIA.
 
+
+Installation
+------------
+
+You can now install jQuery Accessible Tabs Plugin by using [Bower](http://bower.io).
+
+```bash
+bower install jquery-accessible-tabs
+```
+
+
 See also
 --------
 * [Examples](http://blog.ginader.de/dev/jquery/tabs/1.7/index.php)
