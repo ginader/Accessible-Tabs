@@ -70,6 +70,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks("grunt-remove-logging");
 
   // Default task.
-  grunt.registerTask('default', ['jshint', 'uglify', 'removelogging']);
+  grunt.registerTask('default', ['jshint', 'uglify']);
 
 };

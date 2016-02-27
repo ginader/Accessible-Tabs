@@ -12,7 +12,8 @@
   .tabs {
     /*float:left;*/
     width:100%;
-    background:#DAE0D2 url("bg.gif") repeat-x bottom;
+    /*background:#DAE0D2 url("bg.gif") repeat-x bottom;*/
+    background:#DAE0D2;
     font-size:93%;
     line-height:normal;
     }
@@ -75,7 +76,7 @@
     .tabs{
         padding:2em;
     }
-    
+
     .about{
         clear:both;
         padding:2em;

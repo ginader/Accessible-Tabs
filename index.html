@@ -25,7 +25,9 @@
     <li><a href="simple-underneath.html">Example showing how to display the tabs underneath the tab-content</a></li>
     <li><a href="simple-css-class.html">Example showing how to transfer class attributes to the tabs</a></li>
 </ul>
-<p>you can overwrite each of the following settings in the initialization call. Every single one is optional.</p>
+<p>you can overwrite each of the following settings in the initialization call. Every single one is optional.<br />
+  Each of the classname options can now contain multiple classnames divided by a space i.e.: currentInfoClass: 'current-info  visuallyhidden'
+</p>
 <pre><code>&lt;script&gt;
     $(document).ready(function(){
         $(".tabs").accessibleTabs({
@@ -46,7 +48,7 @@
             saveState:false, // save the selected tab into a cookie so it stays selected after a reload. This requires that the wrapping div needs to have an ID (so we know which tab we're saving)
             autoAnchor:false, // will move over any existing id of a headline in tabs markup so it can be linked to it
             pagination:false, // adds buttons to each tab to switch to the next/previous tab
-            position:'top', // can be 'top' or 'bottom'. Defines where the tabs list is inserted. 
+            position:'top', // can be 'top' or 'bottom'. Defines where the tabs list is inserted.
             wrapInnerNavLinks: '', // inner wrap for a-tags in tab navigation. See http://api.jquery.com/wrapInner/ for further informations
             firstNavItemClass: 'first', // Classname of the first list item in the tab navigation
             lastNavItemClass: 'last', // Classname of the last list item in the tab navigation

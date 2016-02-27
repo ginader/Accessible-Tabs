@@ -5,7 +5,7 @@
  *
  * http://blog.ginader.de/dev/syncheight/
  *
- * Copyright (c) 2007-2013
+ * Copyright (c) 2007-2016
  * Dirk Ginader (ginader.de)
  * Dirk Jesse (yaml.de)
  * Dual licensed under the MIT and GPL licenses:

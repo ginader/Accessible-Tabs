@@ -1,6 +1,6 @@
 {
 	"name": "jquery-accessible-tabs",
-	"version": "1.9.8",
+	"version": "1.9.9",
 	"title": "jQuery Accessible Tabs",
 	"description": "jQuery Plugin that generates a Tab Navigation from Markup that makes sense without Javascript. The generated Tabs are the only ones out there that work for Screenreader users without support for WAI ARIA.",
 	"keywords": [
