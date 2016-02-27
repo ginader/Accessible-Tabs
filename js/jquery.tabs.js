@@ -5,11 +5,11 @@
  *
  * english article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-How-to-make-tabs-REALLY-accessible.php
  * german article: http://blog.ginader.de/archives/2009/02/07/jQuery-Accessible-Tabs-Wie-man-Tabs-WIRKLICH-zugaenglich-macht.php
- * 
+ *
  * code: http://github.com/ginader/Accessible-Tabs
  * please report issues at: http://github.com/ginader/Accessible-Tabs/issues
  *
- * Copyright (c) 2007 Dirk Ginader (ginader.de)
+ * Copyright (c) 2016 Dirk Ginader (http://dir.kg)
  * Dual licensed under the MIT and GPL licenses:
  * http://www.opensource.org/licenses/mit-license.php
  * http://www.gnu.org/licenses/gpl.html
@@ -24,6 +24,16 @@
         getUniqueId: function(p, q, r){
             if (r===undefined) {r='';} else {r='-'+r;}
             return p + q + r;
+        },
+        // in case a className i.e. currentInfoClass contains more than one className this converts
+        // 'current-info visuallyhidden' to '.current-info.visuallyhidden' to be used as jQuery selector
+        getClassSelectorsFromClassNames: function(className){
+          if(className.indexOf(' ' > -1)){
+            // the className has spaces so it probably contains more than one classNames
+            return '.'+className.split(' ').join('.');
+          }else{
+            return '.'+className;
+          }
         },
         accessibleTabs: function(config) {
             var defaults = {
@@ -53,7 +63,7 @@
             var keyCodes = {
                 37 : -1, //LEFT
                 38 : -1, //UP
-                39 : +1, //RIGHT 
+                39 : +1, //RIGHT
                 40 : +1 //DOWN
             };
             var positions = {
@@ -112,7 +122,7 @@
                 }
 
                 // Ensure that the call to setup tabs is re-runnable
-                var tabs_selector = '.' + o.options.tabsListClass;
+                var tabs_selector = o.getClassSelectorsFromClassNames(o.options.tabsListClass);
                 if(!$(el).find(tabs_selector).length) {
                     $(el)[positions[o.options.position]]('<ul class="'+o.options.clearfixClass+' '+o.options.tabsListClass+' tabamount'+tabCount+'"></ul>');
                 }
@@ -125,23 +135,23 @@
                     $(content).hide();
                     $(content[0]).show();
                 }
-                $(el).find("ul."+o.options.tabsListClass+">li:first").addClass(o.options.currentClass).addClass(o.options.firstNavItemClass)
+                $(el).find("ul"+o.getClassSelectorsFromClassNames(o.options.tabsListClass)+">li:first").addClass(o.options.currentClass).addClass(o.options.firstNavItemClass)
                   .find('a')[o.options.currentInfoPosition]('<span class="'+o.options.currentInfoClass+'">'+o.options.currentInfoText+'</span>')
-                  .parents("ul."+o.options.tabsListClass).children('li:last').addClass(o.options.lastNavItemClass);
+                  .parents("ul"+o.getClassSelectorsFromClassNames(o.options.tabsListClass)).children('li:last').addClass(o.options.lastNavItemClass);
 
                 if (o.options.wrapInnerNavLinks) {
-                  $(el).find('ul.'+o.options.tabsListClass+'>li>a').wrapInner(o.options.wrapInnerNavLinks);
+                  $(el).find('ul'+o.getClassSelectorsFromClassNames(o.options.tabsListClass)+'>li>a').wrapInner(o.options.wrapInnerNavLinks);
                 }
 
-                $(el).find('ul.'+o.options.tabsListClass+'>li>a').each(function(i){
+                $(el).find('ul'+o.getClassSelectorsFromClassNames(o.options.tabsListClass)+'>li>a').each(function(i){
                     $(this).click(function(event){
                         event.preventDefault();
                         el.trigger("showTab.accessibleTabs", [$(event.target)]);
                         if(o.options.saveState && $.cookie){
                             $.cookie('accessibletab_'+el.attr('id')+'_active',i);
                         }
-                        $(el).find('ul.'+o.options.tabsListClass+'>li.'+o.options.currentClass).removeClass(o.options.currentClass)
-                        .find("span."+o.options.currentInfoClass).remove();
+                        $(el).find('ul'+o.getClassSelectorsFromClassNames(o.options.tabsListClass)+'>li.'+o.options.currentClass).removeClass(o.options.currentClass)
+                        .find("span"+o.getClassSelectorsFromClassNames(o.options.currentInfoClass)).remove();
                         $(this).blur();
                         $(el).find(o.options.tabbody+':visible').hide();
                         $(el).find(o.options.tabbody).eq(i)[o.options.fx](o.options.fxspeed);
@@ -185,7 +195,7 @@
                 }
 
                 if(o.options.autoAnchor && window.location.hash){
-                    var anchorTab = $('.'+o.options.tabsListClass).find(window.location.hash);
+                    var anchorTab = $(o.getClassSelectorsFromClassNames(o.options.tabsListClass)).find(window.location.hash);
                     if(anchorTab.size()){
                         anchorTab.click();
                     }
@@ -228,14 +238,14 @@
             var o = this;
             if(id) {
                 var el = $('#'+id);
-                var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
+                var links = el.find('ul'+o.getClassSelectorsFromClassNames(o.options.tabsListClass)+'>li>a');
                 el.trigger("showTab.accessibleTabs", [links.eq(index)]);
                 links.eq(index).click();
             } else {
                 return this.each(function() {
                     var el = $(this);
                     el.trigger("showTab.accessibleTabs");
-                    var links = el.find('ul.'+o.options.tabsListClass+'>li>a');
+                    var links = el.find('ul'+o.getClassSelectorsFromClassNames(o.options.tabsListClass)+'>li>a');
                     el.trigger("showTab.accessibleTabs", [links.eq(index)]);
                     links.eq(index).click();
                 });
