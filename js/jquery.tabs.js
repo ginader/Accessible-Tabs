@@ -76,7 +76,7 @@
             if($("body").data('accessibleTabsCount') !== undefined){
                 tabsCount = $("body").data('accessibleTabsCount');
             }
-            $("body").data('accessibleTabsCount',this.size()+tabsCount);
+            $("body").data('accessibleTabsCount',this.length+tabsCount);
 
             var o = this;
             return this.each(function(t) {
@@ -196,7 +196,7 @@
 
                 if(o.options.autoAnchor && window.location.hash){
                     var anchorTab = $(o.getClassSelectorsFromClassNames(o.options.tabsListClass)).find(window.location.hash);
-                    if(anchorTab.size()){
+                    if(anchorTab.length){
                         anchorTab.click();
                     }
                 }
@@ -207,7 +207,7 @@
                     m +='    <li class="next"><a href="#{nextAnchor}"><span>{nextHeadline}</span></a></li>';
                     m +='</ul>';
                     var tabs = $(el).find('.tabbody');
-                    var tabcount = tabs.size();
+                    var tabcount = tabs.length;
                     tabs.each(function(idx){
                         $(this).append(m);
                         var next = idx+1;
